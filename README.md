@@ -1,0 +1,1 @@
+# ftnt_ransomeware_preventive_v2_gov_aug2026
