@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Fortinet">
+<meta name="generator" content="Fortinet">
+<meta name="description" content="Myanmar Government &amp; e-Government Ransomware Resilience Blueprint — a Fortinet preventive framework for a Government-led national rollout, anchored in the Cybersecurity Law 2025 CII duties, following recent ransomware and extortion incidents against Myanmar's public sector.">
+<title>Fortinet &mdash; Myanmar Government &amp; e&#8209;Government Ransomware Resilience Blueprint (MDDC)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap');
+
+  :root{
+    --red:#da291c; --red-d:#b21f15; --red-t:#fdecea;
+    --navy:#0a192d; --ink:#11151c; --ink2:#464646; --grey:#6a6f78;
+    --line:#e3e7ee; --tint:#f6f8fb; --tint2:#eef2f7;
+    --green:#3cb17e; --green-d:#2c8e64; --green-t:#e9f6f0;
+    --blue:#307FE2; --blue-t:#eaf2fc;
+    --amber:#b9860a; --amber-t:#fff3d6; --amber-b:#f0d894;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',Arial,Helvetica,sans-serif; color:var(--ink); margin:0;
+    background:#fff; -webkit-font-smoothing:antialiased; line-height:1.55; font-size:16px;
+  }
+  h1,h2,h3,h4{line-height:1.12; letter-spacing:-.02em; margin:0;}
+  p{margin:0 0 1em;}
+  a{color:var(--red); text-decoration:none;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  .eyebrow{font-size:11.5px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:var(--red); margin:0 0 14px;}
+  .eyebrow.lite{color:#ff8f84;}
+  .sec-num{font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--red); font-size:13px; letter-spacing:.05em;}
+  .prod,.fw,.mitre,.chip{overflow-wrap:anywhere;}
+  td,th,p,li,h1,h2,h3,h4{overflow-wrap:break-word;}
+
+  /* ---------- top nav ---------- */
+  .topbar{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.92); backdrop-filter:saturate(160%) blur(8px); border-bottom:1px solid var(--line);}
+  .topbar .wrap{display:flex; align-items:center; justify-content:space-between; height:58px;}
+  .wordmark{font-weight:900; font-size:18px; letter-spacing:.02em; color:var(--ink); display:flex; align-items:center; gap:9px;}
+  .wordmark .mk{width:16px;height:16px;display:inline-block;position:relative;flex:0 0 auto;}
+  .wordmark .mk i{position:absolute;background:var(--red);border-radius:1px;}
+  .wordmark .mk i:nth-child(1){left:0;top:0;width:4px;height:16px;}
+  .wordmark .mk i:nth-child(2){left:6px;top:0;width:4px;height:10px;}
+  .wordmark .mk i:nth-child(3){left:12px;top:0;width:4px;height:16px;}
+  .wordmark sup{color:var(--red); font-size:9px; font-weight:800;}
+  .tabs{display:flex; gap:2px; align-items:center; flex:1 1 auto; min-width:0; margin:0 8px 0 18px; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none;}
+  .tabs::-webkit-scrollbar{display:none;}
+  .tabs a{position:relative; white-space:nowrap; font-size:13px; font-weight:500; color:var(--ink2); letter-spacing:.005em; padding:19px 11px;}
+  .tabs a:hover{color:var(--ink);}
+  .tabs a::after{content:""; position:absolute; left:11px; right:11px; bottom:0; height:2.5px; background:var(--red); border-radius:2px 2px 0 0; transform:scaleX(0); transition:transform .2s ease;}
+  .tabs a.active{color:var(--red); font-weight:700;}
+  .tabs a.active::after{transform:scaleX(1);}
+  .btn-print{font-family:inherit; font-size:12.5px; font-weight:700; color:#fff; background:var(--red); border:0; border-radius:7px; padding:9px 15px; cursor:pointer; letter-spacing:.02em; flex:0 0 auto;}
+  .btn-print:hover{background:var(--red-d);}
+  @media(max-width:980px){ .tabs a{padding:17px 8px; font-size:12px;} .wordmark{display:none;} }
+
+  /* ---------- hero ---------- */
+  .hero{background:radial-gradient(120% 140% at 80% -10%, #1b2a40 0%, var(--navy) 48%, #060d18 100%); color:#fff; position:relative; overflow:hidden;}
+  .hero::after{content:""; position:absolute; left:0; right:0; bottom:0; height:6px; background:var(--red);}
+  .hero .wrap{padding:74px 28px 78px; position:relative; z-index:2;}
+  .hero-grid{display:grid; grid-template-columns:1.55fr 1fr; gap:48px; align-items:center;}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  .hero h1{font-size:clamp(30px,4.2vw,46px); font-weight:900; color:#fff; margin:0 0 18px;}
+  .hero h1 .hl{color:#ff6a5b;}
+  .hero .lede{font-size:18.5px; color:#c9d4e3; font-weight:400; max-width:48ch; margin:0 0 26px;}
+  .hero .meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:4px;}
+  .chip{display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:600; color:#dbe4f0; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); border-radius:999px; padding:7px 13px;}
+  .chip b{color:#fff;}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--red);display:inline-block;box-shadow:0 0 0 3px rgba(218,41,28,.25);}
+  .hero-watermark{position:absolute; right:-60px; top:-40px; font-weight:900; font-size:230px; color:rgba(255,255,255,.03); letter-spacing:-12px; z-index:1; user-select:none;}
+
+  /* incident snapshot card */
+  .snap{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.14); border-radius:14px; padding:0; overflow:hidden;}
+  .snap-h{background:rgba(218,41,28,.14); border-bottom:1px solid rgba(255,255,255,.12); padding:14px 18px; display:flex; align-items:center; gap:10px;}
+  .snap-h .pulse{width:9px;height:9px;border-radius:50%;background:#ff6a5b;box-shadow:0 0 0 0 rgba(255,106,91,.6);animation:pulse 2.2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,106,91,.55);}70%{box-shadow:0 0 0 12px rgba(255,106,91,0);}100%{box-shadow:0 0 0 0 rgba(255,106,91,0);}}
+  .snap-h .t{font-size:12px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#ff9c92;}
+  .snap-b{padding:18px 20px 20px;}
+  .snap-b .row{display:flex; justify-content:space-between; gap:14px; padding:9px 0; border-bottom:1px dashed rgba(255,255,255,.12); font-size:13px;}
+  .snap-b .row:last-child{border-bottom:0;}
+  .snap-b .row .lab{color:#9fb0c6; flex:0 0 78px;}
+  .snap-b .row .val{color:#fff; font-weight:600; text-align:right;}
+  .snap-b .row .val.mono{font-family:'JetBrains Mono',monospace; font-weight:500; font-size:12px;}
+  .snap-note{font-size:11px; color:#7c8ba1; margin-top:12px; line-height:1.5;}
+
+  /* ---------- generic section ---------- */
+  section{padding:64px 0; border-bottom:1px solid var(--line);}
+  .sec-head{max-width:78ch; margin-bottom:34px;}
+  .sec-head h2{font-size:31px; font-weight:800; color:var(--ink); margin:8px 0 12px;}
+  .sec-head p{font-size:17px; color:var(--ink2);}
+  .lead-tint{background:var(--tint);}
+  .lead-tint, .lead-tint + section{border-top:1px solid var(--line);}
+
+  /* impact stat strip */
+  .impact{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:6px;}
+  .impact .it{background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px 18px; border-top:4px solid var(--red); min-width:0;}
+  .impact .it .n{font-size:clamp(22px,2.6vw,30px); font-weight:900; color:var(--ink); letter-spacing:-.03em;}
+  .impact .it .n small{font-size:16px;font-weight:800;color:var(--grey);}
+  .impact .it .l{font-size:13px; color:var(--ink2); margin-top:4px; font-weight:500;}
+  .impact .it .l a{font-weight:700; white-space:nowrap;}
+  @media(max-width:860px){.impact{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- kill chain ---------- */
+  .kc{display:grid; grid-template-columns:repeat(6,1fr); gap:0; margin-top:10px;}
+  .kc .step{position:relative; padding:18px 16px 20px; background:var(--tint); border:1px solid var(--line); border-right:0;}
+  .kc .step:first-child{border-radius:12px 0 0 12px;}
+  .kc .step:last-child{border-right:1px solid var(--line); border-radius:0 12px 12px 0;}
+  .kc .step .k{font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; color:var(--red);}
+  .kc .step h4{font-size:14.5px; font-weight:800; color:var(--ink); margin:8px 0 7px;}
+  .kc .step p{font-size:12.5px; color:var(--ink2); margin:0 0 10px;}
+  .kc .step .mitre{display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; color:var(--navy); background:#fff; border:1px solid var(--line); border-radius:5px; padding:2px 6px;}
+  .kc .step .stop{margin-top:11px; font-size:11.5px; color:var(--green-d); font-weight:700; display:flex; gap:6px; align-items:flex-start;}
+  .kc .step .stop svg{flex:0 0 auto;margin-top:1px;}
+  .kc .step .arrow{position:absolute; right:-9px; top:26px; z-index:3; width:18px;height:18px; background:#fff; border:1px solid var(--line); border-radius:50%; display:flex; align-items:center; justify-content:center;}
+  .kc .step:last-child .arrow{display:none;}
+  @media(max-width:980px){.kc{grid-template-columns:repeat(2,1fr); gap:10px;} .kc .step{border:1px solid var(--line)!important; border-radius:12px!important;} .kc .step .arrow{display:none;}}
+
+  .takeaway{display:flex; gap:14px; align-items:flex-start; margin-top:26px; background:var(--red-t); border:1px solid #f6cfca; border-left:5px solid var(--red); border-radius:10px; padding:18px 20px;}
+  .takeaway svg{flex:0 0 auto;}
+  .takeaway p{margin:0; font-size:15.5px; color:#7d1a12; font-weight:600;}
+  .takeaway p b{color:var(--red-d);}
+
+  /* ---------- control domains ---------- */
+  .domains{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
+  @media(max-width:820px){.domains{grid-template-columns:1fr;}}
+  .dom{border:1px solid var(--line); border-radius:14px; padding:24px 24px 22px; background:#fff; transition:box-shadow .2s, transform .2s; position:relative; overflow:hidden;}
+  .dom:hover{box-shadow:0 12px 34px rgba(10,25,45,.10); transform:translateY(-2px);}
+  .dom .ix{position:absolute; right:18px; top:14px; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700; color:var(--line);}
+  .dom .ico{width:46px;height:46px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:var(--red-t);margin-bottom:14px;}
+  .dom .ico svg{stroke:var(--red);}
+  .dom.b .ico{background:var(--blue-t);} .dom.b .ico svg{stroke:var(--blue);}
+  .dom.g .ico{background:var(--green-t);} .dom.g .ico svg{stroke:var(--green-d);}
+  .dom h3{font-size:19px; font-weight:800; color:var(--ink); margin-bottom:8px;}
+  .dom .stops{font-size:13.5px; color:var(--ink2); margin-bottom:15px;}
+  .dom .stops b{color:var(--ink);}
+  .dom .pl{font-size:10.5px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);margin:0 0 8px;}
+  .prods{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:15px;}
+  .prod{font-size:12px; font-weight:700; color:var(--navy); background:var(--tint2); border:1px solid var(--line); border-radius:6px; padding:5px 9px;}
+  .prod .x{color:var(--red);}
+  .frmwks{display:flex; flex-wrap:wrap; gap:6px; border-top:1px dashed var(--line); padding-top:13px;}
+  .frmwks .fw{font-size:11px; font-weight:600; color:var(--green-d); background:var(--green-t); border-radius:5px; padding:3px 8px;}
+
+  /* ---------- compliance crosswalk ---------- */
+  .tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:12px;}
+  table.cross{width:100%; border-collapse:collapse; min-width:1060px; font-size:12.5px;}
+  table.cross thead th{position:sticky; top:0; background:var(--navy); color:#fff; font-weight:700; text-align:left; padding:14px 14px; font-size:12px; letter-spacing:.02em; vertical-align:middle;}
+  table.cross thead th:first-child{border-radius:0;}
+  table.cross thead th span{display:block; font-size:10.5px; font-weight:500; color:#9fb0c6; letter-spacing:.04em; margin-top:2px;}
+  table.cross td{padding:13px 14px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--ink2);}
+  table.cross tbody tr:nth-child(even){background:var(--tint);}
+  table.cross td.dom-cell{font-weight:800; color:var(--ink); width:180px;}
+  table.cross td.dom-cell small{display:block;font-weight:500;color:var(--grey);font-size:11px;margin-top:3px;}
+  table.cross td .id{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--navy); font-weight:500;}
+  .legend{display:flex; flex-wrap:wrap; gap:16px; margin-top:16px; font-size:12.5px; color:var(--grey);}
+  .legend b{color:var(--ink);}
+  .gapnote{margin-top:18px; display:flex; gap:13px; align-items:flex-start; background:var(--amber-t); border:1px solid var(--amber-b); border-left:5px solid var(--amber); border-radius:10px; padding:16px 20px;}
+  .gapnote svg{flex:0 0 auto;}
+  .gapnote p{margin:0; font-size:14px; color:#7a5300; font-weight:600;}
+  .gapnote b{color:var(--amber);}
+  .gapnote a{color:#7a5300; text-decoration:underline;}
+
+  /* ---------- roadmap ---------- */
+  .road{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:8px;}
+  @media(max-width:820px){.road{grid-template-columns:1fr;}}
+  .ph{border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#fff;}
+  .ph .ph-h{padding:18px 20px; color:#fff;}
+  .ph.p1 .ph-h{background:var(--red);} .ph.p2 .ph-h{background:var(--navy);} .ph.p3 .ph-h{background:var(--green-d);}
+  .ph .ph-h .when{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;opacity:.85;}
+  .ph .ph-h h4{font-size:19px;font-weight:800;margin-top:5px;}
+  .ph .ph-b{padding:18px 20px 20px;}
+  .ph .ph-b .goal{font-size:13px;color:var(--grey);font-weight:600;margin-bottom:12px;}
+  .ph ul{margin:0; padding-left:0; list-style:none;}
+  .ph ul li{font-size:13.5px; color:var(--ink2); padding:7px 0 7px 24px; position:relative; border-top:1px solid var(--line);}
+  .ph ul li:first-child{border-top:0;}
+  .ph ul li::before{content:""; position:absolute; left:2px; top:13px; width:8px;height:8px;border-radius:2px;}
+  .ph.p1 ul li::before{background:var(--red);} .ph.p2 ul li::before{background:var(--navy);} .ph.p3 ul li::before{background:var(--green-d);}
+  .tiering{margin-top:24px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media(max-width:820px){.tiering{grid-template-columns:1fr;}}
+  .tier{background:var(--tint); border:1px solid var(--line); border-left:4px solid var(--navy); border-radius:10px; padding:16px 18px;}
+  .tier h5{font-size:14px;font-weight:800;color:var(--ink);margin:0 0 5px;}
+  .tier p{font-size:12.5px;color:var(--ink2);margin:0;}
+
+  /* ---------- why fortinet ---------- */
+  .why{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+  @media(max-width:860px){.why{grid-template-columns:repeat(2,1fr);}}
+  .why .w{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 20px;}
+  .why .w .ico{width:38px;height:38px;border-radius:9px;background:var(--red-t);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .why .w .ico svg{stroke:var(--red);}
+  .why .w h4{font-size:15.5px;font-weight:800;color:var(--ink);margin-bottom:6px;}
+  .why .w p{font-size:13px;color:var(--ink2);margin:0;}
+  .localnote{margin-top:22px; background:var(--navy); color:#dbe4f0; border-radius:12px; padding:20px 24px; font-size:14px;}
+  .localnote b{color:#fff;}
+
+  /* ---------- CTA ---------- */
+  .cta{background:var(--red); color:#fff;}
+  .cta .wrap{padding:56px 28px;}
+  .cta h2{font-size:30px;font-weight:900;color:#fff;margin-bottom:12px;max-width:24ch;}
+  .cta p{font-size:16px;color:#ffe3df;max-width:62ch;margin-bottom:26px;}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  @media(max-width:860px){.steps{grid-template-columns:repeat(2,1fr);}}
+  .steps .s{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:11px;padding:18px;}
+  .steps .s .n{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;color:#ffd2cc;}
+  .steps .s h4{font-size:15px;font-weight:800;color:#fff;margin:7px 0 5px;}
+  .steps .s p{font-size:12.5px;color:#ffe3df;margin:0;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--navy); color:#9fb0c6;}
+  footer .wrap{padding:40px 28px;}
+  .foot-top{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.12);}
+  .foot-top .pos{font-size:21px;font-weight:900;color:#fff;letter-spacing:-.02em;}
+  .foot-top .pos .x{color:var(--red);}
+  .foot-top .tag{font-size:13px;color:#9fb0c6;margin-top:4px;max-width:40ch;}
+  .foot-meta{font-size:12px;line-height:1.7;text-align:right;}
+  .foot-meta b{color:#cdd6e2;}
+  .disc{font-size:11.5px;color:#6f7e92;line-height:1.65;margin-top:20px;}
+  .sources{font-size:11.5px;color:#6f7e92;line-height:1.7;margin-top:14px;}
+  .sources a{color:#9fb0c6;text-decoration:underline;}
+
+  /* ---------- phased blueprint ---------- */
+  .guideprins{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:0 0 26px;}
+  @media(max-width:820px){.guideprins{grid-template-columns:1fr;}}
+  .gp{background:var(--navy); color:#fff; border-radius:12px; padding:18px 20px; position:relative; overflow:hidden;}
+  .gp::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--red);}
+  .gp .gpn{font-family:'JetBrains Mono',monospace; font-size:12px; color:#ff8f84; font-weight:700;}
+  .gp h4{font-size:18px; font-weight:800; margin:6px 0 5px; color:#fff;}
+  .gp p{font-size:13px; color:#c9d4e3; margin:0;}
+  .matrix-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:12px;}
+  table.matrix{width:100%; border-collapse:collapse; min-width:920px; font-size:13px;}
+  table.matrix thead th{padding:14px 16px; color:#fff; font-weight:800; text-align:left; vertical-align:top; font-size:13px;}
+  table.matrix thead th.dcol{background:var(--ink); width:150px;}
+  table.matrix thead th.c1{background:var(--red);}
+  table.matrix thead th.c2{background:var(--navy);}
+  table.matrix thead th.c3{background:var(--green-d);}
+  table.matrix thead th .w{display:block; font-size:11px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; opacity:.85;}
+  table.matrix thead th .g{display:block; font-size:14px; font-weight:800; margin-top:3px;}
+  table.matrix td{padding:13px 16px; border-bottom:1px solid var(--line); border-left:1px solid var(--line); vertical-align:top; color:var(--ink2);}
+  table.matrix td.dcell{font-weight:800; color:var(--ink); background:var(--tint); border-left:0;}
+  table.matrix td.dcell small{display:block; font-weight:600; color:var(--grey); font-size:11px; margin-top:3px;}
+  table.matrix tbody tr:last-child td{border-bottom:0;}
+  .baseline-note{margin-top:18px; display:flex; gap:13px; align-items:flex-start; background:var(--green-t); border:1px solid #bfe6d3; border-left:5px solid var(--green-d); border-radius:10px; padding:16px 20px;}
+  .baseline-note svg{flex:0 0 auto;}
+  .baseline-note p{margin:0; font-size:14px; color:#1d5a40; font-weight:600;}
+  .baseline-note b{color:var(--green-d);}
+
+  /* ---------- success / lesson cases ---------- */
+  .cases{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media(max-width:900px){.cases{grid-template-columns:1fr;}}
+  .case{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:14px; background:#fff; overflow:hidden; transition:box-shadow .2s, transform .2s;}
+  .case:hover{box-shadow:0 12px 34px rgba(10,25,45,.10); transform:translateY(-2px);}
+  .case-meta{display:flex; flex-wrap:wrap; gap:6px; align-items:center; padding:16px 22px 0; font-size:11px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color:var(--grey);}
+  .case-meta .country{color:var(--ink); font-weight:800;}
+  .case-meta .dot-sep{color:var(--line);}
+  .case .case-top{padding:12px 22px 0;}
+  .case .tag{display:inline-block; font-size:10.5px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; color:var(--red); background:var(--red-t); border-radius:5px; padding:4px 9px; margin-bottom:13px;}
+  .case.v .tag{color:var(--green-d); background:var(--green-t);}
+  .conf{display:inline-block; font-size:10.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--amber); background:var(--amber-t); border:1px solid var(--amber-b); border-radius:5px; padding:4px 9px; margin-bottom:13px;}
+  .case h4{font-size:16.5px; font-weight:800; color:var(--ink); line-height:1.24; margin-bottom:10px;}
+  .case p.body{font-size:13.5px; color:var(--ink2); margin:0 0 16px;}
+  .case .case-foot{margin-top:auto; padding:0 22px 18px;}
+  .case .chiprow{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;}
+  .stopline{display:flex; flex-wrap:wrap; gap:6px; align-items:center; font-size:12px; font-weight:700; color:var(--green-d); margin:0 0 14px;}
+  .dchip{font-size:10.5px; font-weight:800; color:var(--navy); background:var(--tint2); border:1px solid var(--line); border-radius:5px; padding:3px 7px;}
+  .case .src{display:flex; align-items:center; gap:7px; font-size:12px; font-weight:700; color:var(--navy); border-top:1px solid var(--line); padding-top:13px;}
+  .case .src svg{flex:0 0 auto; color:var(--red);}
+  .case .src a{color:var(--navy);} .case .src a:hover{color:var(--red);}
+  .industry-cue{margin-top:26px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px 26px;}
+  .industry-cue .ic-n{font-size:34px; font-weight:900; color:var(--ink); letter-spacing:-.03em; line-height:1; display:flex; flex-direction:column;}
+  .industry-cue .ic-n.red{color:var(--red);}
+  .industry-cue .ic-n span{font-size:12px; font-weight:600; color:var(--grey); letter-spacing:0; margin-top:5px;}
+  .industry-cue .ic-arrow{flex:0 0 auto;}
+  .industry-cue .ic-txt{flex:1 1 320px; margin:0; font-size:14px; color:var(--ink2);}
+  .industry-cue .ic-txt b{color:var(--ink);}
+
+  /* ---------- competitive ---------- */
+  .cmp-proof{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:14px;}
+  @media(max-width:820px){.cmp-proof{grid-template-columns:repeat(2,1fr);}}
+  .cmp-proof .t{background:#fff; border:1px solid var(--line); border-top:4px solid var(--red); border-radius:12px; padding:18px; min-width:0;}
+  .cmp-proof .t .n{font-size:clamp(22px,2.6vw,30px); font-weight:900; color:var(--ink); letter-spacing:-.03em;}
+  .cmp-proof .t .l{font-size:12px; color:var(--ink2); margin-top:5px; line-height:1.4;}
+  .gartner-disc{font-size:11px; color:var(--grey); line-height:1.5; margin:0 0 26px;}
+  .cmp-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:12px;}
+  table.cmp{width:100%; border-collapse:separate; border-spacing:0; min-width:940px; font-size:13px;}
+  table.cmp thead th{padding:15px 16px; text-align:left; font-size:12.5px; vertical-align:bottom; background:var(--tint); border-bottom:2px solid var(--line); color:var(--ink2); font-weight:700;}
+  table.cmp thead th.ft{background:var(--red); color:#fff;}
+  table.cmp thead th small{display:block; font-weight:500; color:var(--grey); font-size:10.5px; margin-top:3px;}
+  table.cmp thead th.ft small{color:#ffd2cc;}
+  table.cmp td{padding:13px 16px; border-bottom:1px solid var(--line); vertical-align:top;}
+  table.cmp td.crit{font-weight:700; color:var(--ink); width:226px; background:var(--tint);}
+  table.cmp td.ftcol{background:#fdf3f2;}
+  table.cmp tbody tr:last-child td{border-bottom:0;}
+  .st{display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:600; color:var(--ink2);}
+  .st .ic{width:17px; height:17px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto;}
+  .st.full{color:var(--green-d); font-weight:800;}
+  .st.full .ic{background:var(--green);} .st.full .ic svg{stroke:#fff;}
+  .st.part{color:var(--ink2);}
+  .st.part .ic{background:#c8c8c8;} .st.part .ic svg{stroke:#fff;}
+  .st.gap{color:var(--grey);}
+  .st.gap .ic{background:#eef2f7;} .st.gap .ic svg{stroke:#9aa3b0;}
+  .cd{display:block; font-size:11.5px; color:var(--grey); margin-top:5px; line-height:1.35;}
+  td.ftcol .cd{color:var(--ink2);}
+  .cmp-note{font-size:11.5px; color:var(--grey); margin-top:14px; line-height:1.6;}
+
+  /* ---------- cloud / sovereign band ---------- */
+  .cloud{margin-top:26px; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#fff;}
+  .cloud-top{display:flex; gap:16px; align-items:flex-start; padding:22px 24px 18px; border-top:4px solid var(--blue);}
+  .cloud-ico{width:46px;height:46px;border-radius:11px;background:var(--blue-t);display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+  .cloud-ico svg{stroke:var(--blue);}
+  .cloud-eyebrow{font-size:10.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin:0 0 5px;}
+  .cloud-top h3{font-size:19px;font-weight:800;color:var(--ink);margin:0 0 8px;}
+  .cloud-lede{font-size:14px;color:var(--ink2);margin:0;max-width:82ch;}
+  .cloud-split{display:grid;grid-template-columns:1fr 1.3fr;border-top:1px solid var(--line);}
+  @media(max-width:760px){.cloud-split{grid-template-columns:1fr;}}
+  .cl-col{padding:18px 24px;}
+  .cl-col.dc{background:var(--tint); border-right:1px solid var(--line);}
+  .cl-k{font-size:12px;font-weight:800;color:var(--ink);margin-bottom:7px;}
+  .cl-col.dc .cl-k{color:var(--grey);}
+  .cl-col p{font-size:13px;color:var(--ink2);margin:0 0 12px;}
+  .cl-col .prods{margin:0;}
+  .cloud-foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;padding:15px 24px;background:var(--navy);color:#c9d4e3;font-size:13px;}
+  .cloud-foot b{color:#fff;}
+  .cloud-foot .src{display:flex;align-items:center;gap:7px;font-weight:700;white-space:nowrap;}
+  .cloud-foot .src a{color:#fff;text-decoration:underline;}
+  .cloud-foot .src svg{color:#ff8f84;flex:0 0 auto;}
+  @media print{ .cloud-top,.cloud-foot,.cl-col{break-inside:avoid;} }
+
+  /* ---------- diagram placeholders ---------- */
+  .diag{margin:18px 0;border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff;}
+  .diag svg{width:100%;height:auto;display:block;}
+  .diag-ph{display:flex;align-items:center;justify-content:center;min-height:160px;font-size:12.5px;color:var(--grey);font-weight:600;letter-spacing:.04em;text-transform:uppercase;background:var(--tint);border-radius:8px;}
+
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease;}
+  .reveal.in{opacity:1; transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;} .snap-h .pulse{animation:none;}}
+
+  @media(max-width:390px){
+    .impact,.cmp-proof,.steps,.why{grid-template-columns:1fr;}
+    .kc{grid-template-columns:1fr;}
+  }
+
+  @media print{
+    @page{margin:12mm;}
+    html{scroll-behavior:auto;}
+    .topbar{display:none;} .hero-watermark{display:none;}
+    body{font-size:10.5pt; background:#fff;}
+    /* critical: defeat scroll-reveal so nothing prints blank */
+    .reveal{opacity:1 !important; transform:none !important;}
+    .wrap{max-width:none; padding:0;}
+    section{padding:16px 0; border-bottom:1px solid var(--line); break-before:auto;}
+    .sec-head{break-after:avoid;}
+    .sec-head h2{font-size:20pt;}
+    .hero{break-inside:avoid;}
+    .hero .wrap{padding:20px 0;}
+    .hero h1{font-size:28pt;}
+    .hero-grid{gap:24px;}
+    /* keep blocks intact across page breaks */
+    .dom,.ph,.it,.w,.kc .step,.case,.gp,.tier,.cmp-proof .t,.takeaway,.baseline-note,.gapnote,.industry-cue,.localnote,.snap,.diag{break-inside:avoid;}
+    tr,td,th{break-inside:avoid;}
+    .lessons .cases{grid-template-columns:repeat(2,1fr);}
+    /* let wide tables fit the page instead of scrolling/clipping */
+    .matrix-wrap,.cmp-wrap,.tablewrap{overflow:visible;}
+    table.matrix,table.cmp,table.cross{min-width:0; width:100%; font-size:8.6pt;}
+    table.cross{font-size:8pt;}
+    table.cmp .cd{font-size:8pt;}
+    .cmp-proof{grid-template-columns:repeat(4,1fr);}
+    a{color:inherit !important; text-decoration:none;}
+    *{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  }
+
+  @media print{
+    .guideprins,.kc,.cmp-proof,.impact,.steps,.tiering{break-inside:avoid;} footer{break-before:avoid;} .disc,.sources{orphans:3;widows:3;}
+    .guideprins{grid-template-columns:repeat(3,1fr);}
+    footer .wrap{padding:22px 0;} .disc,.sources{font-size:8.2pt;line-height:1.5;margin-top:10px;}
+    .cta .wrap{padding:28px 0;} .cta{break-inside:avoid;}
+    .diag{padding:8px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="wordmark"><span class="mk"><i></i><i></i><i></i></span>FORTINET<sup>&reg;</sup></div>
+    <nav class="tabs">
+      <a href="#incident">Wake&#8209;up call</a>
+      <a href="#anatomy">Anatomy</a>
+      <a href="#blueprint">Blueprint</a>
+      <a href="#cloud">Sovereign cloud</a>
+      <a href="#phases">Phases</a>
+      <a href="#lessons">Lessons abroad</a>
+      <a href="#proof">Proof</a>
+      <a href="#compete">Edge</a>
+      <a href="#compliance">Law &amp; standards</a>
+      <a href="#rollout">Rollout</a>
+      <a href="#why">Why Fortinet</a>
+    </nav>
+    <button class="btn-print" onclick="window.print()">Save as PDF</button>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-watermark">MM</div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow lite">Confidential &middot; For the Ministry of Digital Development and Communications (formerly MoTC), e&#8209;Government Steering Committee &amp; Union Ministries</p>
+        <h1>Myanmar Government &amp; e&#8209;Government<br><span class="hl">Ransomware Resilience</span> Blueprint</h1>
+        <p class="lede">A preventive framework to protect Myanmar&rsquo;s ministries, national data centre and citizen services against ransomware and data&#8209;extortion &mdash; designed for a <b style="color:#fff;font-weight:600">Government&#8209;led</b>, Cybersecurity&#8209;Law&#8209;aligned national rollout, built on the Fortinet Security Fabric.</p>
+        <div class="meta">
+          <span class="chip"><span class="dot"></span> Catalyst: <b>domestic extortion incident, June 2026</b></span>
+          <span class="chip">Prepared by <b>Fortinet &middot; Myanmar</b></span>
+          <span class="chip">August 2026 &middot; v2.0</span>
+        </div>
+      </div>
+
+      <div class="snap" aria-label="Threat snapshot">
+        <div class="snap-h"><span class="pulse"></span><span class="t">Threat snapshot &middot; last 12 months, Myanmar public sector</span></div>
+        <div class="snap-b">
+          <div class="row"><span class="lab">Jul 2025</span><span class="val">Civil&#8209;service records leak &mdash; ~27&nbsp;GB &middot; 37,701 files &middot; &gt;100,000 personnel</span></div>
+          <div class="row"><span class="lab">Aug 2025</span><span class="val">Civil Service Board &mdash; WALocker ransomware &middot; ~200,000 officials&rsquo; records</span></div>
+          <div class="row"><span class="lab">Jun 2026</span><span class="val">Major domestic financial institution &mdash; LAPSUS$&#8209;branded extortion &middot; ~120&nbsp;GB claimed &middot; identity infrastructure (SSO, webmail, payment auth) exposed</span></div>
+          <div class="row"><span class="lab">2023&ndash;2026</span><span class="val">MoD / MoFA &mdash; state&#8209;nexus espionage (Mustang Panda), signed&#8209;binary side&#8209;loading</span></div>
+          <div class="row"><span class="lab">Common thread</span><span class="val mono">stolen identity &middot; flat networks &middot; no tested backup</span></div>
+        </div>
+        <div class="snap-note" style="padding:0 20px 18px;">Sources: BNI Online &middot; HackerNoon (WALocker) &middot; The Hacker News (Mustang Panda) &middot; open&#8209;source threat intelligence, June 2026 &mdash; full citations in footer.</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 01. WAKE-UP CALL ============ -->
+<section id="incident" class="lead-tint">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow"><span class="sec-num">01</span> &nbsp;Why this matters to the whole of government</p>
+      <h2>One institution was named. Every ministry is exposed.</h2>
+      <p>In the last 12 months Myanmar has seen civil&#8209;service HR records leaked, a ministry&#8209;level ransomware incident against the Union Civil Service Board, and a LAPSUS$&#8209;branded extortion of a major domestic financial institution via its identity infrastructure. The pattern is identical &mdash; identity&#8209;led, low&#8209;cost, repeatable &mdash; and it works against any ministry, data centre or e&#8209;service that has not closed the same gaps. For Government the exposure is <b>systemic</b>: e&#8209;Government, e&#8209;finance, e&#8209;health, e&#8209;transport and e&#8209;communications are all statutory CII categories under the <a href="https://www.moi.gov.mm/moi:eng/news/16656" target="_blank" rel="noopener">Cybersecurity Law 2025</a>; a shock to one ripples across citizen services and public trust.</p>
+    </div>
+    <div class="impact reveal">
+      <div class="it"><div class="n">187</div><div class="l">government bodies hit by ransomware worldwide in H1 2026 &mdash; ~1 per day, +13% vs H2 2025 &middot; <a href="https://www.comparitech.com/news/government-ransomware-roundup-h1-2026-stats-on-attacks-ransoms-and-data-breaches/" target="_blank" rel="noopener">Comparitech</a></div></div>
+      <div class="it"><div class="n">27.8<small>&nbsp;days</small></div><div class="l">average government downtime per ransomware attack &mdash; longest of any sector &middot; <a href="https://www.comparitech.com/blog/information-security/government-ransomware-attacks/" target="_blank" rel="noopener">Comparitech tracker</a></div></div>
+      <div class="it"><div class="n">389%</div><div class="l">YoY rise in confirmed ransomware victims in 2025 &middot; <a href="https://www.fortinet.com/corporate/about-us/newsroom/press-releases/2026/fortinet-2026-global-threat-landscape-report-reveals-surge-in-ai-enabled-cybercrime-increase-ransomware-victims-year-over-year" target="_blank" rel="noopener">Fortinet 2026 GTLR</a></div></div>
+      <div class="it"><div class="n">$0<small>&nbsp;0&#8209;day</small></div><div class="l">the pattern relies on stolen identity, not exotic exploits &mdash; credentials, phishing &amp; email &asymp; 60% of root causes &middot; <a href="https://www.sophos.com/en-us/content/state-of-ransomware" target="_blank" rel="noopener">Sophos 2025</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02. ANATOMY ============ -->
+<section id="anatomy">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow"><span class="sec-num">02</span> &nbsp;Anatomy of the attack</p>
+      <h2>An identity&#8209;first kill chain &mdash; and where it breaks</h2>
+      <p>Neither the domestic incidents nor the international cases in this brief needed a zero&#8209;day. The playbook is human and identity&#8209;centric: buy or phish credentials, defeat weak MFA, log in as a trusted user, move laterally across a flat government network, exfiltrate, then extort &mdash; or wipe. Each stage maps to a MITRE ATT&amp;CK technique, and each has a corresponding Fortinet control that stops it.</p>
+    </div>
+
+    <div class="kc reveal">
+      <div class="step">
+        <div class="k">STAGE 1</div>
+        <h4>Access brokering</h4>
+        <p>Infostealer logs &amp; credential dumps; stealer logs are 67% of dark&#8209;web datasets.</p>
+        <span class="mitre">T1078 &middot; T1589</span>
+        <div class="stop"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2c8e64" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> FortiRecon dark&#8209;web watch</div>
+        <div class="arrow"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#6a6f78" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></div>
+      </div>
+      <div class="step">
+        <div class="k">STAGE 2</div>
+        <h4>Social engineering</h4>
+        <p>Vishing, help&#8209;desk pretexting, MFA&#8209;fatigue prompt bombing.</p>
+        <span class="mitre">T1566 &middot; T1621</span>
+        <div class="stop"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2c8e64" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> FortiMail + FortiPhish</div>
+        <div class="arrow"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#6a6f78" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></div>
+      </div>
+      <div class="step">
+        <div class="k">STAGE 3</div>
+        <h4>Valid&#8209;account login</h4>
+        <p>VPN / SSO / webmail with weak or no MFA.</p>
+        <span class="mitre">T1078 &middot; T1133</span>
+        <div class="stop"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2c8e64" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> FortiAuthenticator FIDO2 + ZTNA</div>
+        <div class="arrow"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#6a6f78" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></div>
+      </div>
+      <div class="step">
+        <div class="k">STAGE 4</div>
+        <h4>Lateral movement</h4>
+        <p>Flat domain, shared admin creds, unpatched public servers.</p>
+        <span class="mitre">T1021 &middot; T1068</span>
+        <div class="stop"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2c8e64" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> FortiGate ISFW + FortiPAM</div>
+        <div class="arrow"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#6a6f78" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></div>
+      </div>
+      <div class="step">
+        <div class="k">STAGE 5</div>
+        <h4>Exfiltration</h4>
+        <p>Staged archive out via cloud storage.</p>
+        <span class="mitre">T1567 &middot; T1041</span>
+        <div class="stop"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2c8e64" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> FortiDLP + FortiEndpoint</div>
+        <div class="arrow"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#6a6f78" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></div>
+      </div>
+      <div class="step">
+        <div class="k">STAGE 6</div>
+        <h4>Extortion or wipe</h4>
+        <p>Leak&#8209;site listing, or a destructive wiper under ransomware cover.</p>
+        <span class="mitre">T1657 &middot; T1485</span>
+        <div class="stop"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2c8e64" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg> FortiSOC/FortiSIEM IR + immutable recovery</div>
+      </div>
+    </div>
+
+    <div class="takeaway reveal">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#da291c" stroke-width="2.2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+      <p><b>Three lessons for Government:</b> defend identity first; segment always &mdash; one ministry&rsquo;s foothold must never become the national data centre&rsquo;s; and assume breach &mdash; tested, immutable, off&#8209;site backup is the only thing that shortens a 28&#8209;day outage to days.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03. BLUEPRINT ============ -->
+<section id="blueprint" class="lead-tint">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow"><span class="sec-num">03</span> &nbsp;The preventive blueprint</p>
+      <h2>Six control domains, one integrated Security Fabric</h2>
+      <p>A ministry does not need fifteen disconnected tools from fifteen tenders; it needs six control outcomes that work together, on one operating system and one console &mdash; closing the seams where attackers operate, and supportable by lean government IT teams.</p>
+    </div>
+
+    <div class="domains">
+      <!-- D1 identity -->
+      <div class="dom reveal">
+        <span class="ix">D1</span>
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2a5 5 0 0 1 5 5c0 2-1 3-1 5m-9-5a5 5 0 0 1 1-3M6 12c0 5 2 7 2 10m4-10v10m4-6c0 3-1 4-1 6"/></svg></div>
+        <h3>Identity &amp; access hardening</h3>
+        <p class="stops">Kills the attack at its root. <b>Phishing&#8209;resistant MFA (FIDO2), number&#8209;matching, and privileged&#8209;access control</b> across ministry admin and citizen&#8209;facing systems defeat MFA fatigue, stolen credentials and help&#8209;desk pretexting.</p>
+        <p class="pl">Fortinet</p>
+        <div class="prods"><span class="prod">Forti<span class="x">Authenticator</span></span><span class="prod">Forti<span class="x">Token</span></span><span class="prod">Forti<span class="x">PAM</span></span><span class="prod">Forti<span class="x">NAC</span></span><span class="prod">Forti<span class="x">Identity</span> Cloud</span></div>
+        <div class="frmwks"><span class="fw">CSL 2025 &middot; CII plan</span><span class="fw">NIST PR.AA</span><span class="fw">ISO A.5.15/A.8.5</span><span class="fw">ZTMM Identity</span></div>
+      </div>
+
+      <!-- D2 email -->
+      <div class="dom reveal">
+        <span class="ix">D2</span>
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
+        <h3>Email &amp; human&#8209;layer defense</h3>
+        <p class="stops">Closes the most common front door into ministry inboxes. <b>Anti&#8209;phishing, anti&#8209;BEC, attachment detonation</b> and continuous staff simulation reduce the click that starts the breach.</p>
+        <p class="pl">Fortinet</p>
+        <div class="prods"><span class="prod">Forti<span class="x">Mail</span></span><span class="prod">Forti<span class="x">Sandbox</span></span><span class="prod">Forti<span class="x">Phish</span></span><span class="prod">Forti<span class="x">Recon</span></span></div>
+        <div class="frmwks"><span class="fw">CSL 2025 &middot; awareness</span><span class="fw">NIST PR.AT</span><span class="fw">ISO A.6.3/A.8.7</span></div>
+      </div>
+
+      <!-- D3 endpoint -->
+      <div class="dom reveal">
+        <span class="ix">D3</span>
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.5 8 8 11 4.5-3 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Endpoint &amp; ransomware kill</h3>
+        <p class="stops">Stops execution and encryption on every ministry workstation and server. <b>Behavior&#8209;based endpoint protection</b> halts ransomware in real time and rolls back changes, even for never&#8209;seen variants.</p>
+        <p class="pl">Fortinet</p>
+        <div class="prods"><span class="prod">Forti<span class="x">Endpoint</span></span><span class="prod">Forti<span class="x">Sandbox</span></span></div>
+        <div class="frmwks"><span class="fw">NIST PR.PS / DE.CM</span><span class="fw">ISO A.8.7</span><span class="fw">ZTMM Devices</span></div>
+      </div>
+
+      <!-- D4 segmentation -->
+      <div class="dom b reveal">
+        <span class="ix">D4</span>
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7 7.5 10.5 16M17 7.5 13.5 16M7.5 6h9"/></svg></div>
+        <h3>Segmentation &amp; zero&#8209;trust access</h3>
+        <p class="stops">Contains the blast radius. <b>Internal segmentation firewalling and ZTNA</b> stop lateral movement &mdash; turning a single ministry foothold into a dead end, not a national data&#8209;centre&#8209;wide compromise.</p>
+        <p class="pl">Fortinet</p>
+        <div class="prods"><span class="prod">Forti<span class="x">Gate</span> ISFW</span><span class="prod">Forti<span class="x">SASE</span> Sovereign</span><span class="prod">Forti<span class="x">SASE</span> Outpost</span><span class="prod">Forti<span class="x">NAC</span></span><span class="prod">Forti<span class="x">Manager</span></span></div>
+        <div class="frmwks"><span class="fw">NIST PR.IR</span><span class="fw">ISO A.8.20/A.8.22</span><span class="fw">ZTMM Networks</span></div>
+      </div>
+
+      <!-- D5 detection -->
+      <div class="dom reveal">
+        <span class="ix">D5</span>
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M11 7v4l2.5 2.5M21 21l-3.5-3.5"/></svg></div>
+        <h3>Detection, SOC visibility &amp; response</h3>
+        <p class="stops">Cuts dwell time across the government estate. <b>SIEM/SOAR analytics, deception and dark&#8209;web monitoring</b> surface intrusions &mdash; and leak&#8209;site listings &mdash; early enough to act. FortiAnalyzer keeps logs on&#8209;premise and sovereign; FortiSOC is available as a managed cloud option for ministries without a 24&times;7 team.</p>
+        <p class="pl">Fortinet</p>
+        <div class="prods"><span class="prod">Forti<span class="x">SIEM</span></span><span class="prod">Forti<span class="x">SOAR</span></span><span class="prod">Forti<span class="x">Analyzer</span></span><span class="prod">Forti<span class="x">SOC</span></span><span class="prod">Forti<span class="x">Deceptor</span></span><span class="prod">Forti<span class="x">NDR</span></span></div>
+        <div class="frmwks"><span class="fw">CSL 2025 &middot; IR team + annual report</span><span class="fw">NIST DE/RS</span><span class="fw">ISO A.5.24&ndash;5.28</span></div>
+      </div>
+
+      <!-- D6 data -->
+      <div class="dom g reveal">
+        <span class="ix">D6</span>
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+        <h3>Data protection, backup &amp; recovery</h3>
+        <p class="stops">Defeats double&#8209;extortion. <b>Data&#8209;loss prevention on citizen&#8209;PII egress plus assured, immutable, off&#8209;site recovery</b> means stolen data is unreadable and ministry services restore without paying.</p>
+        <p class="pl">Fortinet</p>
+        <div class="prods"><span class="prod">Forti<span class="x">DLP</span></span><span class="prod">Forti<span class="x">Gate</span> DLP</span><span class="prod">Forti<span class="x">CNAPP</span></span><span class="prod">Forti<span class="x">Guard</span> IR</span></div>
+        <div class="frmwks"><span class="fw">NIST PR.DS / RC</span><span class="fw">ISO A.8.12/A.8.13</span><span class="fw">ZTMM Data</span></div>
+      </div>
+    </div>
+
+    <div class="cloud reveal" id="cloud">
+      <div class="cloud-top">
+        <div class="cloud-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 18a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.6A3.5 3.5 0 0 1 18 18H7Z"/></svg></div>
+        <div>
+          <p class="cloud-eyebrow">Sovereign by design</p>
+          <h3>Covers the whole estate &mdash; ministry on&#8209;premise, Government Data Centre &amp; Government Cloud</h3>
+          <p class="cloud-lede">Myanmar&rsquo;s e&#8209;Government stack &mdash; the Government Data Centre, Government Cloud, Myanmar National Portal and One Map geo&#8209;portal &mdash; concentrates many ministries behind one perimeter. Indonesia&rsquo;s national data centre incident (2024) showed what concentration without segmentation and backup means: 210+ agencies offline at once. Fortinet applies the same six domains inside the sovereign cloud, with data, logs and inspection kept in&#8209;country.</p>
+        </div>
+      </div>
+      <div class="cloud-split">
+        <div class="cl-col dc">
+          <div class="cl-k">Data&#8209;centre operator secures &mdash; the platform</div>
+          <p>Facility, hypervisor, network fabric and tenant isolation for the Government Data Centre and Government Cloud.</p>
+        </div>
+        <div class="cl-col ftnt">
+          <div class="cl-k">Fortinet secures the ministry&rsquo;s side &mdash; the workloads</div>
+          <p>Cloud posture &amp; configuration, identities, segmentation, workloads, apps/APIs and data &mdash; the same six control domains, applied inside the sovereign cloud.</p>
+          <div class="prods"><span class="prod">Forti<span class="x">Gate</span> VM</span><span class="prod">Forti<span class="x">SASE</span> Sovereign</span><span class="prod">Forti<span class="x">SASE</span> Outpost</span><span class="prod">Forti<span class="x">Gate</span> 1200G</span><span class="prod">Forti<span class="x">CNAPP</span></span><span class="prod">Forti<span class="x">Web</span></span><span class="prod">Forti<span class="x">Endpoint</span></span></div>
+        </div>
+      </div>
+
+      <div class="diag reveal">
+<!-- DIAG:SOVEREIGN -->
+        <svg viewBox="0 0 1120 520" width="100%" height="auto" role="img" aria-label="Sovereign e-Government security architecture: citizens and public portals connect through FortiWeb and FortiGate VM edge into the Government Data Centre and Government Cloud, segmented into Ministry A, Ministry B and Shared services tenant lanes with FortiGate ISFW segmentation, FortiCNAPP posture management and immutable off-site backup per tenant; ministries, state and region offices and remote staff connect via FortiSASE Sovereign and FortiSASE Outpost with ZTNA; a Sovereign SOC running FortiSIEM, FortiSOAR and on-premise FortiAnalyzer receives telemetry from every zone, backed by FortiGuard Labs threat intelligence and mmCERT / NCSC and ASEAN Regional CERT reporting; a dashed boundary marks that data, logs and inspection stay in-country in Myanmar." xmlns="http://www.w3.org/2000/svg" font-family="Inter, Arial, sans-serif">
+
+  <defs>
+    <marker id="arrNavy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0a192d"/>
+    </marker>
+    <marker id="arrGrey" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6a6f78"/>
+    </marker>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="1120" height="520" fill="#ffffff"/>
+
+  <!-- in-country boundary -->
+  <rect x="178" y="25" width="930" height="480" rx="16" fill="none" stroke="#da291c" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <rect x="458" y="14" width="370" height="24" rx="12" fill="#ffffff" stroke="#da291c" stroke-width="1.2"/>
+  <text x="643" y="30" text-anchor="middle" font-size="10.8" font-weight="700" fill="#da291c">In-country: data · logs · inspection stay in Myanmar</text>
+
+  <!-- ===================== CITIZENS ===================== -->
+  <rect x="20" y="130" width="150" height="150" rx="12" fill="#ffffff" stroke="#e3e7ee" stroke-width="1.5"/>
+  <text x="95" y="152" text-anchor="middle" font-size="10.5" font-weight="800" letter-spacing="0.5" fill="#da291c">PUBLIC ACCESS</text>
+  <text x="95" y="176" text-anchor="middle" font-size="13" font-weight="800" fill="#11151c">Citizens &amp; public</text>
+  <text x="95" y="193" text-anchor="middle" font-size="13" font-weight="800" fill="#11151c">portals</text>
+  <text x="95" y="216" text-anchor="middle" font-size="10.5" font-weight="500" fill="#6a6f78">Myanmar National</text>
+  <text x="95" y="230" text-anchor="middle" font-size="10.5" font-weight="500" fill="#6a6f78">Portal · e-services</text>
+
+  <!-- ===================== EDGE ===================== -->
+  <rect x="185" y="130" width="150" height="150" rx="12" fill="#ffffff" stroke="#e3e7ee" stroke-width="1.5"/>
+  <text x="260" y="152" text-anchor="middle" font-size="10.5" font-weight="800" letter-spacing="0.5" fill="#da291c">PERIMETER</text>
+  <text x="260" y="178" text-anchor="middle" font-size="13" font-weight="800" fill="#11151c">FortiWeb /</text>
+  <text x="260" y="196" text-anchor="middle" font-size="13" font-weight="800" fill="#11151c">FortiGate VM edge</text>
+  <text x="260" y="222" text-anchor="middle" font-size="10.5" font-weight="500" fill="#6a6f78">Edge firewall &amp; WAF</text>
+
+  <!-- ===================== GOVERNMENT DATA CENTRE ===================== -->
+  <rect x="350" y="40" width="420" height="340" rx="14" fill="#f6f8fb" stroke="#e3e7ee" stroke-width="1.5"/>
+  <text x="560" y="64" text-anchor="middle" font-size="10.5" font-weight="800" letter-spacing="0.5" fill="#da291c">GOVERNMENT INFRASTRUCTURE</text>
+  <text x="560" y="87" text-anchor="middle" font-size="14" font-weight="800" fill="#11151c">Government Data Centre / Government Cloud</text>
+
+  <!-- tenant lanes -->
+  <rect x="365" y="100" width="124" height="225" rx="8" fill="#ffffff" stroke="#e3e7ee" stroke-width="1.2"/>
+  <text x="427" y="119" text-anchor="middle" font-size="12" font-weight="800" fill="#0a192d">Ministry A</text>
+  <text x="427" y="135" text-anchor="middle" font-size="9.5" font-weight="500" fill="#6a6f78">Tenant network</text>
+
+  <rect x="499" y="100" width="124" height="225" rx="8" fill="#ffffff" stroke="#e3e7ee" stroke-width="1.2"/>
+  <text x="561" y="119" text-anchor="middle" font-size="12" font-weight="800" fill="#0a192d">Ministry B</text>
+  <text x="561" y="135" text-anchor="middle" font-size="9.5" font-weight="500" fill="#6a6f78">Tenant network</text>
+
+  <rect x="633" y="100" width="124" height="225" rx="8" fill="#ffffff" stroke="#e3e7ee" stroke-width="1.2"/>
+  <text x="695" y="115" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0a192d">Shared</text>
+  <text x="695" y="130" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0a192d">services</text>
+  <text x="695" y="147" text-anchor="middle" font-size="9.5" font-weight="500" fill="#6a6f78">Common controls</text>
+
+  <!-- ISFW separators -->
+  <line x1="494" y1="100" x2="494" y2="325" stroke="#0a192d" stroke-width="1.3" stroke-dasharray="4 4"/>
+  <line x1="628" y1="100" x2="628" y2="325" stroke="#0a192d" stroke-width="1.3" stroke-dasharray="4 4"/>
+  <rect x="477" y="309" width="34" height="14" rx="3" fill="#f6f8fb" stroke="#e3e7ee" stroke-width="1"/>
+  <text x="494" y="319" text-anchor="middle" font-size="8.5" font-weight="800" fill="#0a192d">FG ISFW</text>
+  <rect x="611" y="309" width="34" height="14" rx="3" fill="#f6f8fb" stroke="#e3e7ee" stroke-width="1"/>
+  <text x="628" y="319" text-anchor="middle" font-size="8.5" font-weight="800" fill="#0a192d">FG ISFW</text>
+
+  <!-- CNAPP + backup chips -->
+  <rect x="365" y="332" width="190" height="40" rx="8" fill="#ffffff" stroke="#e3e7ee" stroke-width="1.2"/>
+  <path d="M383,344 l6,3 v5 c0,4 -3,7 -6,8 c-3,-1 -6,-4 -6,-8 v-5 z" fill="none" stroke="#307FE2" stroke-width="1.5"/>
+  <path d="M380,352 l2,2 l4,-4" fill="none" stroke="#307FE2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="398" y="350" font-size="11.5" font-weight="800" fill="#11151c">FortiCNAPP</text>
+  <text x="398" y="363" font-size="9" font-weight="500" fill="#6a6f78">Cloud posture management</text>
+
+  <rect x="565" y="332" width="190" height="40" rx="8" fill="#ffffff" stroke="#e3e7ee" stroke-width="1.2"/>
+  <rect x="576" y="345" width="14" height="14" rx="3" fill="none" stroke="#2c8e64" stroke-width="1.6"/>
+  <circle cx="583" cy="351" r="2" fill="#2c8e64"/>
+  <rect x="582.2" y="352" width="1.6" height="3.5" fill="#2c8e64"/>
+  <text x="598" y="350" font-size="11.5" font-weight="800" fill="#11151c">Immutable backup</text>
+  <text x="598" y="363" font-size="9" font-weight="500" fill="#6a6f78">Off-site, per tenant</text>
+
+  <!-- ===================== FortiSASE ===================== -->
+  <rect x="785" y="130" width="150" height="150" rx="12" fill="#ffffff" stroke="#e3e7ee" stroke-width="1.5"/>
+  <text x="860" y="152" text-anchor="middle" font-size="10.5" font-weight="800" letter-spacing="0.5" fill="#da291c">SOVEREIGN ACCESS</text>
+  <text x="860" y="177" text-anchor="middle" font-size="13" font-weight="800" fill="#11151c">FortiSASE</text>
+  <text x="860" y="195" text-anchor="middle" font-size="13" font-weight="800" fill="#11151c">Sovereign /</text>
+  <text x="860" y="213" text-anchor="middle" font-size="13" font-weight="800" fill="#11151c">Outpost</text>
+  <rect x="825" y="222" width="70" height="18" rx="9" fill="#0a192d"/>
+  <text x="860" y="234.5" text-anchor="middle" font-size="10" font-weight="800" fill="#ffffff">ZTNA</text>
+  <text x="860" y="256" text-anchor="middle" font-size="9.5" font-weight="500" fill="#6a6f78">FortiGate 1200G PoP</text>
+
+  <!-- ===================== MINISTRIES / REMOTE ===================== -->
+  <rect x="950" y="130" width="150" height="150" rx="12" fill="#ffffff" stroke="#e3e7ee" stroke-width="1.5"/>
+  <text x="1025" y="152" text-anchor="middle" font-size="10.5" font-weight="800" letter-spacing="0.5" fill="#da291c">REMOTE ACCESS</text>
+  <text x="1025" y="175" text-anchor="middle" font-size="13" font-weight="800" fill="#11151c">Ministries,</text>
+  <text x="1025" y="192" text-anchor="middle" font-size="13" font-weight="800" fill="#11151c">state/region</text>
+  <text x="1025" y="209" text-anchor="middle" font-size="13" font-weight="800" fill="#11151c">offices, remote</text>
+  <text x="1025" y="226" text-anchor="middle" font-size="13" font-weight="800" fill="#11151c">staff</text>
+
+  <!-- ===================== SOC BAND ===================== -->
+  <rect x="188" y="410" width="410" height="90" rx="12" fill="#eef1f6" stroke="#dfe4ec" stroke-width="1.5"/>
+  <text x="393" y="432" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="0.4" fill="#da291c">24×7 DETECTION &amp; RESPONSE</text>
+  <text x="393" y="454" text-anchor="middle" font-size="15" font-weight="900" fill="#0a192d">Sovereign SOC</text>
+  <text x="393" y="473" text-anchor="middle" font-size="11" font-weight="500" fill="#464646">FortiSIEM · FortiSOAR · FortiAnalyzer (on‑premise)</text>
+
+  <rect x="613" y="410" width="190" height="90" rx="12" fill="#eaf2fc" stroke="#d7e6f8" stroke-width="1.5"/>
+  <text x="708" y="452" text-anchor="middle" font-size="13" font-weight="800" fill="#307FE2">FortiGuard Labs</text>
+  <text x="708" y="470" text-anchor="middle" font-size="10" font-weight="500" fill="#6a6f78">Global threat intelligence</text>
+
+  <rect x="818" y="410" width="280" height="90" rx="12" fill="#e9f6f0" stroke="#d3ecdf" stroke-width="1.5"/>
+  <text x="958" y="452" text-anchor="middle" font-size="13" font-weight="800" fill="#2c8e64">mmCERT / NCSC</text>
+  <text x="958" y="470" text-anchor="middle" font-size="10" font-weight="500" fill="#6a6f78">ASEAN Regional CERT reporting</text>
+
+  <!-- ===================== MAIN FLOW ARROWS ===================== -->
+  <line x1="170" y1="205" x2="182" y2="205" stroke="#0a192d" stroke-width="2" marker-end="url(#arrNavy)"/>
+  <line x1="335" y1="205" x2="347" y2="205" stroke="#0a192d" stroke-width="2" marker-end="url(#arrNavy)"/>
+  <line x1="785" y1="205" x2="773" y2="205" stroke="#0a192d" stroke-width="2" marker-end="url(#arrNavy)"/>
+  <line x1="950" y1="205" x2="938" y2="205" stroke="#0a192d" stroke-width="2" marker-end="url(#arrNavy)"/>
+
+  <!-- ===================== TELEMETRY ARROWS TO SOC ===================== -->
+  <line x1="260" y1="280" x2="260" y2="407" stroke="#6a6f78" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrGrey)"/>
+  <line x1="560" y1="380" x2="560" y2="407" stroke="#6a6f78" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrGrey)"/>
+  <line x1="860" y1="280" x2="860" y2="407" stroke="#6a6f78" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrGrey)"/>
+
+  <!-- band internal connectors -->
+  <line x1="598" y1="455" x2="610" y2="455" stroke="#6a6f78" stroke-width="1.5" marker-end="url(#arrGrey)"/>
+  <line x1="803" y1="455" x2="815" y2="455" stroke="#6a6f78" stroke-width="1.5" marker-end="url(#arrGrey)"/>
+
+</svg>
+      </div>
+
+      <div class="cloud-foot">
+        <span><b>Why it matters here:</b> mandatory, funded, immutable, off&#8209;site backup per tenant &mdash; Indonesia had ~2% of data backed up; Ukraine restored ~60 state registers in two weeks because distributed backups survived. FortiSASE Outpost keeps traffic, logs and processing within defined geographic/private boundaries; Gartner&reg; 2026 Critical Capabilities for SASE Platforms ranks Fortinet #2 for the Sovereign SASE use case.</span>
+        <span class="src"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg> <a href="https://www.fortinet.com/corporate/about-us/newsroom/press-releases/2026/fortinet-expands-fortigate-g-series-with-1200g-and-fortisase-outpost-to-advance-firewall-sase-convergence" target="_blank" rel="noopener">FortiSASE Outpost PR (Jul 2026)</a></span>
+      </div>
+    </div>
+
+    <div class="localnote reveal" style="margin-top:26px">
+      <b>Underpinned by FortiGuard Labs &amp; FortiAI.</b> One signal seen anywhere in the Fabric protects every ministry in the program &mdash; the foundation for national threat sharing through mmCERT / NCSC and the ASEAN Regional CERT.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04. PHASED PREVENTIVE BLUEPRINT ============ -->
+<section id="phases">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow"><span class="sec-num">04</span> &nbsp;The preventive blueprint, in phases</p>
+      <h2>A firm, staged guideline &mdash; not a wish list</h2>
+      <p>All seven control domains &mdash; the six core layers plus sovereign cloud &mdash; sequenced into three enforceable phases. Phase&nbsp;1 is the minimum baseline every Union ministry and CII operator must meet; Phases&nbsp;2&ndash;3 deepen resilience and scale with each ministry&rsquo;s tier &mdash; clear, measurable and supervisable.</p>
+    </div>
+
+    <div class="guideprins reveal">
+      <div class="gp"><div class="gpn">PRINCIPLE 01</div><h4>Identity first</h4><p>Every login phishing&#8209;resistant; every privilege controlled. The attack starts here &mdash; so does the defense.</p></div>
+      <div class="gp"><div class="gpn">PRINCIPLE 02</div><h4>Segment always</h4><p>No flat networks. Contain by default, so one foothold never becomes the whole platform.</p></div>
+      <div class="gp"><div class="gpn">PRINCIPLE 03</div><h4>Assume breach</h4><p>Detect fast, respond automatically, recover without paying. Resilience is the goal &mdash; not perfection.</p></div>
+    </div>
+
+    <div class="matrix-wrap reveal">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th class="dcol">Control domain</th>
+            <th class="c1"><span class="w">Phase 1 &middot; 0&ndash;90 days</span><span class="g">Contain the identity gap</span></th>
+            <th class="c2"><span class="w">Phase 2 &middot; 3&ndash;9 months</span><span class="g">Limit the blast radius</span></th>
+            <th class="c3"><span class="w">Phase 3 &middot; 9&ndash;18 months</span><span class="g">National&#8209;grade resilience</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="dcell">D1 &middot; Identity &amp; access<small>FortiAuthenticator, FortiPAM</small></td>
+            <td>Phishing&#8209;resistant MFA (FIDO2) for all staff &amp; admins; privileged&#8209;access vaulting on citizen&#8209;data systems &amp; ministry admin.</td>
+            <td>Single sign&#8209;on + conditional access across all ministry apps; eliminate standing privilege.</td>
+            <td>Continuous identity&#8209;risk scoring; a government&#8209;wide MFA standard under MDDC.</td>
+          </tr>
+          <tr>
+            <td class="dcell">D2 &middot; Email &amp; human<small>FortiMail, FortiPhish</small></td>
+            <td>Secure email gateway + anti&#8209;BEC on every ministry mailbox; block macro&#8209;borne malware.</td>
+            <td>Quarterly phishing simulation with reporting &amp; targeted coaching.</td>
+            <td>Awareness KPIs in CII reporting; brand&#8209;impersonation takedown via FortiRecon.</td>
+          </tr>
+          <tr>
+            <td class="dcell">D3 &middot; Endpoint<small>FortiEndpoint</small></td>
+            <td>Behavioral endpoint protection on 100% of endpoints &amp; servers; default&#8209;deny ransomware behavior.</td>
+            <td>Automated containment + sandbox detonation of unknown files.</td>
+            <td>Managed threat hunting; routine rollback &amp; restore drills.</td>
+          </tr>
+          <tr>
+            <td class="dcell">D4 &middot; Segmentation<small>FortiGate, FortiSASE</small></td>
+            <td>Isolate citizen&#8209;data systems &amp; ministry admin zones; kill flat east&#8209;west paths.</td>
+            <td>ZTNA replaces flat VPN; micro&#8209;segmentation around crown&#8209;jewel e&#8209;services.</td>
+            <td>Deny&#8209;by&#8209;default east&#8209;west; continuous policy assurance.</td>
+          </tr>
+          <tr>
+            <td class="dcell">D5 &middot; Detection &amp; SOC<small>FortiSIEM, FortiAnalyzer</small></td>
+            <td>Centralize logs; baseline high&#8209;fidelity alerting.</td>
+            <td>SIEM correlation + tested IR playbooks + incident reporting to mmCERT.</td>
+            <td>24&times;7 SOC, deception &amp; national threat sharing via mmCERT / NCSC + ASEAN Regional CERT.</td>
+          </tr>
+          <tr>
+            <td class="dcell">D6 &middot; Data &amp; recovery<small>FortiDLP, FortiGuard</small></td>
+            <td>DLP on citizen&#8209;PII egress; immutable, offline&#8209;capable backups &mdash; tested restore.</td>
+            <td>Encryption at rest &amp; in transit; regularly tested restores.</td>
+            <td>Assured RTO/RPO; periodic red&#8209;team &amp; recovery exercises.</td>
+          </tr>
+          <tr>
+            <td class="dcell">D7 &middot; Sovereign cloud<small>Government Data Centre</small></td>
+            <td>Inventory Government Cloud tenants &amp; workloads; CSPM; per&#8209;tenant backup mandate.</td>
+            <td>Segment tenants; FortiGate VM / WAF for public portals; least&#8209;privilege IAM.</td>
+            <td>Sovereign SASE / Outpost for ministry access; automated compliance &amp; unified SOC view.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="baseline-note reveal">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2c8e64" stroke-width="2.2"><path d="M12 2 4 5v6c0 5 3.5 8 8 11 4.5-3 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+      <p><b>Firm baseline:</b> Phase&nbsp;1 is the minimum for every Union ministry and CII operator &mdash; achievable within one quarter. Attestation aligns to the annual CII report each department must submit to the Steering Committee under the Cybersecurity Law 2025, giving Government a clear, auditable line of sight.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05. LESSONS ABROAD ============ -->
+<section id="lessons" class="lessons lead-tint">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow"><span class="sec-num">05</span> &nbsp;Lessons from abroad</p>
+      <h2>Governments that learned the hard way &mdash; and what it cost</h2>
+      <p>Ransomware against government is a pattern, not a surprise. Six cases, each confirmed by official statements or national CERT advisories, each mapping to one control domain in this blueprint.</p>
+    </div>
+
+    <div class="cases">
+      <!-- Indonesia -->
+      <div class="case reveal">
+        <div class="case-meta"><span class="country">Indonesia</span><span class="dot-sep">&middot;</span><span>Jun 2024</span><span class="dot-sep">&middot;</span><span>Brain Cipher (LockBit 3.0 variant)</span></div>
+        <div class="case-top">
+          <h4>National data centre down &mdash; 210+ agencies, ~2% backed up</h4>
+          <p class="body">Brain Cipher ransomware, a LockBit 3.0 variant, hit Indonesia&rsquo;s Pusat Data Nasional, halting immigration processing and school enrolment across 210+ government agencies. Backup coverage was only ~2% because tested backup was an optional paid add&#8209;on most tenants had not purchased. Indonesia refused the US$8M ransom demand; the attacker later released a decryptor.</p>
+        </div>
+        <div class="case-foot">
+          <div class="stopline">Would have stopped it &rarr; <span class="dchip">D6 backup mandate</span><span class="dchip">D4 tenant segmentation</span></div>
+          <div class="src"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg> <a href="https://www.theregister.com/2024/06/24/indonesia_datacenter_ransomware/" target="_blank" rel="noopener">The Register</a> / <a href="https://www.techradar.com/pro/indonesia-president-orders-audit-of-government-data-centers-after-it-finds-most-of-the-data-they-store-is-not-backed-up" target="_blank" rel="noopener">TechRadar</a></div>
+        </div>
+      </div>
+
+      <!-- Costa Rica -->
+      <div class="case reveal">
+        <div class="case-meta"><span class="country">Costa Rica</span><span class="dot-sep">&middot;</span><span>Apr&ndash;Jun 2022</span><span class="dot-sep">&middot;</span><span>Conti, then Hive</span></div>
+        <div class="case-top">
+          <h4>National emergency declared &mdash; two ransomware gangs, one government</h4>
+          <p class="body">Stolen VPN credentials and no MFA let Conti move through a flat domain across roughly 27 institutions; when Hive struck the health service weeks later, Costa Rica became the first country to declare a national emergency over a cyberattack. Tax and customs platforms were down for about two months; a US$20M demand was refused.</p>
+        </div>
+        <div class="case-foot">
+          <div class="stopline">Would have stopped it &rarr; <span class="dchip">D1 MFA</span><span class="dchip">D4 segmentation</span></div>
+          <div class="src"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg> <a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-265a" target="_blank" rel="noopener">CISA AA21&#8209;265A</a> / <a href="https://www.bleepingcomputer.com/news/security/how-conti-ransomware-hacked-and-encrypted-the-costa-rican-government/" target="_blank" rel="noopener">BleepingComputer</a></div>
+        </div>
+      </div>
+
+      <!-- Philippines -->
+      <div class="case reveal">
+        <div class="case-meta"><span class="country">Philippines</span><span class="dot-sep">&middot;</span><span>Sep 2023</span><span class="dot-sep">&middot;</span><span>Medusa</span></div>
+        <div class="case-top">
+          <h4>A lapsed licence, 13 million records</h4>
+          <p class="body">Endpoint&#8209;protection licences had lapsed for around six months due to a procurement delay when Medusa ransomware struck the national health insurer, PhilHealth, leaking records for roughly 13 million members. A US$300k demand was refused.</p>
+        </div>
+        <div class="case-foot">
+          <div class="stopline">Would have stopped it &rarr; <span class="dchip">D3 endpoint</span><span class="dchip">procurement continuity</span></div>
+          <div class="src"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg> <a href="https://therecord.media/philippines-state-health-insurer-struggles-with-ransomware" target="_blank" rel="noopener">The Record</a> / <a href="https://www.hipaajournal.com/lack-of-antivirus-software-behind-philhealth-ransomware-attack/" target="_blank" rel="noopener">HIPAA Journal</a></div>
+        </div>
+      </div>
+
+      <!-- Malaysia -->
+      <div class="case reveal">
+        <div class="case-meta"><span class="country">Malaysia</span><span class="dot-sep">&middot;</span><span>Mar 2025</span><span class="dot-sep">&middot;</span><span>unattributed</span></div>
+        <div class="case-top">
+          <h4>Flights grounded to manual operations at a major airport</h4>
+          <p class="body">An unattributed ransomware attack disrupted flight&#8209;information, check&#8209;in and baggage systems at Kuala Lumpur International Airport, forcing staff onto manual processes. A US$10M ransom demand was publicly refused by the Prime Minister.</p>
+        </div>
+        <div class="case-foot">
+          <div class="stopline">Would have stopped it &rarr; <span class="dchip">D4 OT/IT segmentation</span><span class="dchip">D5 detection</span></div>
+          <div class="src"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg> <a href="https://therecord.media/malaysia-pm-says-country-rejected-ransom-demand-airport-cyberattack" target="_blank" rel="noopener">The Record</a></div>
+        </div>
+      </div>
+
+      <!-- Thailand -->
+      <div class="case reveal">
+        <div class="case-meta"><span class="country">Thailand</span><span class="dot-sep">&middot;</span><span>Jul 2025</span><span class="dot-sep">&middot;</span><span>Devman (DragonForce&#8209;derived)</span></div>
+        <div class="case-top">
+          <span class="conf">Claimed vs. stated</span>
+          <h4>300&nbsp;GB claimed, a defaced website restored from backup</h4>
+          <p class="body">The Devman group, a DragonForce&#8209;derived operation, claimed 300&nbsp;GB of stolen data from Thailand&rsquo;s Ministry of Labour and demanded US$15M &mdash; the largest government ransom demand recorded in 2025. The Ministry stated only its public website had been defaced, and restored it from backup.</p>
+        </div>
+        <div class="case-foot">
+          <div class="stopline">Would have stopped it &rarr; <span class="dchip">D5 detection &amp; incident comms</span></div>
+          <div class="src"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg> <a href="https://therecord.media/thai-officials-restore-labor-website-after-hack" target="_blank" rel="noopener">The Record</a> / <a href="https://www.comparitech.com/news/government-ransomware-roundup-q1-q3-2025-stats-on-attacks-ransoms-and-data-breaches/" target="_blank" rel="noopener">Comparitech</a></div>
+        </div>
+      </div>
+
+      <!-- Vietnam -->
+      <div class="case v reveal">
+        <div class="case-meta"><span class="country">Vietnam</span><span class="dot-sep">&middot;</span><span>Mar&ndash;Apr 2024</span><span class="dot-sep">&middot;</span><span>unattributed ransomware</span></div>
+        <div class="case-top">
+          <span class="tag">Governance response</span>
+          <h4>A Prime Minister&rsquo;s directive made ministers personally accountable</h4>
+          <p class="body">Ransomware knocked broker VNDirect offline for about a week and halted e&#8209;invoicing at state oil company PVOIL. Vietnam&rsquo;s Prime Minister issued a directive on 8 April 2024 making ministers personally accountable, ordering a review of all state systems and mandatory reporting to the national CERT.</p>
+        </div>
+        <div class="case-foot">
+          <div class="stopline">Would have stopped it &rarr; <span class="dchip">named accountable officer</span><span class="dchip">mandatory reporting (mirrors CSL 2025 s.17)</span></div>
+          <div class="src"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg> <a href="https://www.dfdl.com/insights/legal-and-tax-updates/vietnam-rising-cybersecurity-concerns-in-vietnam-prompt-prime-ministerial-directive/" target="_blank" rel="noopener">DFDL</a> / <a href="https://www.darkreading.com/cyberattacks-data-breaches/vietnam-securities-broker-suffered-cyberattack-that-suspended-trading" target="_blank" rel="noopener">Dark Reading</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="industry-cue reveal">
+      <div class="ic-n">99%<span>backups targeted</span></div>
+      <div class="ic-arrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#da291c" stroke-width="2.4"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+      <div class="ic-n red">51%<span>compromised</span></div>
+      <p class="ic-txt"><b>Backups are attacked first.</b> Immutable and offline, or it doesn&rsquo;t count &mdash; ransomware actors targeted backup repositories in 99% of state and local government attacks, succeeding in 51% of them. Not one of the six governments above paid a ransom &mdash; and none recovered quickly without tested backups. <a href="https://www.sophos.com/en-us/whitepaper/state-of-ransomware-in-state-and-local-government" target="_blank" rel="noopener">Source &middot; Sophos SLG 2024</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06. PROVEN RESULTS ============ -->
+<section id="proof">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow"><span class="sec-num">06</span> &nbsp;Proven in the field</p>
+      <h2>Not theory &mdash; Fortinet secures governments in production</h2>
+      <p>Published customer stories show the same controls in this blueprint securing national and federal government services around the world. A selection of verifiable references:</p>
+    </div>
+
+    <div class="cases">
+      <div class="case reveal">
+        <div class="case-top" style="padding-top:22px;">
+          <span class="tag">National e&#8209;Government &middot; Malta</span>
+          <h4>Malta Information Technology Agency (MITA) &mdash; 600+ government sites secured end&#8209;to&#8209;end</h4>
+          <p class="body">MITA secures citizen data across 600+ government sites and services with endpoint&#8209;to&#8209;core&#8209;to&#8209;cloud segmentation, standardizing national e&#8209;Government infrastructure on a single Fabric.</p>
+        </div>
+        <div class="case-foot">
+          <div class="chiprow"><span class="prod">Forti<span class="x">Gate</span></span><span class="prod">Forti<span class="x">Manager</span></span><span class="prod">Forti<span class="x">Analyzer</span></span></div>
+          <div class="src"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg> <a href="https://www.fortinet.com/customers/mita" target="_blank" rel="noopener">Fortinet customer story</a></div>
+        </div>
+      </div>
+
+      <div class="case reveal">
+        <div class="case-top" style="padding-top:22px;">
+          <span class="tag">Federal legal body &middot; Brazil</span>
+          <h4>Advocacia&#8209;Geral da Uni&atilde;o &mdash; 14,000 staff, 150+ sites unified on Secure SD&#8209;WAN</h4>
+          <p class="body">Brazil&rsquo;s federal legal body deployed FortiSASE and Secure SD&#8209;WAN across 150+ sites for 14,000 staff, saving R$1.5M per year while delivering 2&ndash;3&times; more bandwidth than the prior architecture.</p>
+        </div>
+        <div class="case-foot">
+          <div class="chiprow"><span class="prod">Forti<span class="x">SASE</span></span><span class="prod">Secure SD&#8209;WAN</span></div>
+          <div class="src"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg> <a href="https://www.fortinet.com/customers/advocacia-geral-da-uniao" target="_blank" rel="noopener">Fortinet customer story</a></div>
+        </div>
+      </div>
+
+      <div class="case reveal">
+        <div class="case-top" style="padding-top:22px;">
+          <span class="tag">Ministry of Health &middot; UAE</span>
+          <h4>Ministry of Health &amp; Prevention &mdash; 16 to 160 sites aligned to the national digital vision</h4>
+          <p class="body">The UAE&rsquo;s Ministry of Health &amp; Prevention scaled Secure SD&#8209;WAN and FortiGate from 16 to 160 sites, aligning healthcare connectivity and security with the country&rsquo;s national digital transformation vision.</p>
+        </div>
+        <div class="case-foot">
+          <div class="chiprow"><span class="prod">Forti<span class="x">Gate</span></span><span class="prod">Secure SD&#8209;WAN</span></div>
+          <div class="src"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M8 7h9v9"/></svg> <a href="https://www.fortinet.com/customers/mohap" target="_blank" rel="noopener">Fortinet customer story</a></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="reveal" style="font-size:13px;color:var(--ink2);margin:20px 0 6px;">Also in production: <b>Felgueiras City Council</b> (Portugal) &mdash; &ge;75% faster incident response. <a href="https://www.fortinet.com/customers/felgueiras-city-council" target="_blank" rel="noopener">Source &middot; Fortinet</a></p>
+
+    <div class="industry-cue reveal">
+      <div class="ic-n">86%<span>breached in past 12 months</span></div>
+      <div class="ic-arrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#da291c" stroke-width="2.4"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></div>
+      <div class="ic-n red">49%<span>can&rsquo;t get security headcount approved</span></div>
+      <p class="ic-txt"><b>Skills, not budget lines, decide outcomes.</b> Fortinet&rsquo;s 2026 Cybersecurity Skills Gap Report found most organisations were breached in the past year, yet nearly half of IT leaders can&rsquo;t get approval to hire the security staff they need. The Fortinet Training Institute has trained 1M+ people, with free NSE curricula available for public&#8209;sector teams. <a href="https://www.fortinet.com/corporate/about-us/newsroom/press-releases/2026/fortinet-report-reveals-cybersecurity-hiring-stalls-as-nearly-half-of-it-leaders-face-corporate-pushback" target="_blank" rel="noopener">Source &middot; Fortinet</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07. COMPETITIVE ADVANTAGE ============ -->
+<section id="compete">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow"><span class="sec-num">07</span> &nbsp;The Fortinet advantage</p>
+      <h2>One Fabric beats a drawer full of disconnected tools</h2>
+      <p>Ransomware exploits the <em>seams</em> between products &mdash; the gaps where a firewall, an endpoint agent and an identity tool from three different vendors don&rsquo;t talk to each other. Fortinet removes the seams: one operating system, one console, automated cross&#8209;control response. Here is how that compares.</p>
+    </div>
+
+    <div class="cmp-proof reveal">
+      <div class="t"><div class="n">Leader</div><div class="l">2025 Gartner&reg; Magic Quadrant&trade; for Hybrid Mesh Firewall &mdash; positioned highest in Ability to Execute</div></div>
+      <div class="t"><div class="n">11</div><div class="l">Gartner&reg; Magic Quadrant&trade; reports recognising Fortinet (Mar 2026)</div></div>
+      <div class="t"><div class="n">#2</div><div class="l">Sovereign SASE use case &mdash; 2026 Gartner&reg; Critical Capabilities for SASE Platforms</div></div>
+      <div class="t"><div class="n">1 OS</div><div class="l">FortiOS 8.0 unifies the entire Fabric on one console &amp; policy</div></div>
+    </div>
+    <p class="gartner-disc reveal">Gartner&reg; and Magic Quadrant&trade; are registered trademarks of Gartner, Inc. and/or its affiliates. Gartner does not endorse any vendor, product or service depicted in its research publications.</p>
+
+    <div class="cmp-wrap reveal">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th class="crit">Capability against ransomware</th>
+            <th class="ft">Fortinet Security Fabric<small>Integrated platform</small></th>
+            <th>Isolated point products<small>Best&#8209;of&#8209;breed, multi&#8209;vendor</small></th>
+            <th>Other single&#8209;vendor stack<small>Partially integrated</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="crit">Native integration &amp; auto&#8209;correlation</td>
+            <td class="ftcol"><span class="st full"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M20 6 9 17l-5-5"/></svg></span>Built&#8209;in</span><span class="cd">All controls share FortiOS and correlate automatically.</span></td>
+            <td><span class="st gap"><span class="ic"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Gap</span><span class="cd">API glue &amp; SIEM stitching; brittle and slow.</span></td>
+            <td><span class="st part"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M5 12h14"/></svg></span>Partial</span><span class="cd">Acquired modules, uneven integration.</span></td>
+          </tr>
+          <tr>
+            <td class="crit">Cross&#8209;control automated response (seconds)</td>
+            <td class="ftcol"><span class="st full"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M20 6 9 17l-5-5"/></svg></span>Yes</span><span class="cd">NGFW, endpoint &amp; identity act as one to contain instantly.</span></td>
+            <td><span class="st gap"><span class="ic"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Manual</span><span class="cd">Each tool acts alone; humans must correlate.</span></td>
+            <td><span class="st part"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M5 12h14"/></svg></span>Partial</span><span class="cd">Some playbooks, rarely end&#8209;to&#8209;end.</span></td>
+          </tr>
+          <tr>
+            <td class="crit">Stop lateral movement (internal segmentation)</td>
+            <td class="ftcol"><span class="st full"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M20 6 9 17l-5-5"/></svg></span>Native</span><span class="cd">FortiGate ISFW + ZTNA built in.</span></td>
+            <td><span class="st part"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M5 12h14"/></svg></span>Partial</span><span class="cd">Possible, separately bought &amp; managed.</span></td>
+            <td><span class="st part"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M5 12h14"/></svg></span>Partial</span><span class="cd">Depends on add&#8209;on modules.</span></td>
+          </tr>
+          <tr>
+            <td class="crit">Shared real&#8209;time threat intelligence</td>
+            <td class="ftcol"><span class="st full"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M20 6 9 17l-5-5"/></svg></span>Fabric&#8209;wide</span><span class="cd">FortiGuard pushes to every element at once.</span></td>
+            <td><span class="st gap"><span class="ic"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Siloed</span><span class="cd">Separate feeds per vendor.</span></td>
+            <td><span class="st part"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M5 12h14"/></svg></span>Partial</span><span class="cd">Single feed, narrower sensor base.</span></td>
+          </tr>
+          <tr>
+            <td class="crit">Single console &amp; unified policy</td>
+            <td class="ftcol"><span class="st full"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M20 6 9 17l-5-5"/></svg></span>One pane</span><span class="cd">FortiManager + FortiAnalyzer across all.</span></td>
+            <td><span class="st gap"><span class="ic"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Many UIs</span><span class="cd">Swivel&#8209;chair operations across consoles.</span></td>
+            <td><span class="st part"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M5 12h14"/></svg></span>Partial</span><span class="cd">Consolidating, still multiple panes.</span></td>
+          </tr>
+          <tr>
+            <td class="crit">Endpoint ransomware rollback</td>
+            <td class="ftcol"><span class="st full"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M20 6 9 17l-5-5"/></svg></span>Yes</span><span class="cd">FortiEndpoint auto&#8209;remediates &amp; restores files.</span></td>
+            <td><span class="st part"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M5 12h14"/></svg></span>Vendor&#8209;dependent</span><span class="cd">Only if the endpoint product supports it.</span></td>
+            <td><span class="st part"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M5 12h14"/></svg></span>Varies</span><span class="cd">Depends on the bundled module.</span></td>
+          </tr>
+          <tr>
+            <td class="crit">Endpoint, independently rated</td>
+            <td class="ftcol"><span class="st full"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M20 6 9 17l-5-5"/></svg></span>Proven</span><span class="cd">Gartner&reg; Peer Insights&trade; Customers&rsquo; Choice for EPP, 4th consecutive year (2026).</span></td>
+            <td><span class="st part"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M5 12h14"/></svg></span>Varies</span><span class="cd">Results vary by vendor and evaluation.</span></td>
+            <td><span class="st part"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M5 12h14"/></svg></span>Mixed</span><span class="cd">Mixed reviews across public rating platforms.</span></td>
+          </tr>
+          <tr>
+            <td class="crit">TCO &amp; operability for lean teams</td>
+            <td class="ftcol"><span class="st full"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M20 6 9 17l-5-5"/></svg></span>Lowest</span><span class="cd">Consolidation cuts cost &amp; staffing load.</span></td>
+            <td><span class="st gap"><span class="ic"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Highest</span><span class="cd">Greatest integration &amp; headcount cost.</span></td>
+            <td><span class="st part"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M5 12h14"/></svg></span>Premium</span><span class="cd">Better than multi&#8209;vendor, priced high.</span></td>
+          </tr>
+          <tr>
+            <td class="crit">Sovereign &amp; hybrid (Gov Cloud / on&#8209;prem) protection</td>
+            <td class="ftcol"><span class="st full"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M20 6 9 17l-5-5"/></svg></span>One Fabric</span><span class="cd">Same policy spans data centre &amp; Government Cloud; FortiSASE Sovereign/Outpost keeps inspection in&#8209;country.</span></td>
+            <td><span class="st gap"><span class="ic"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Split</span><span class="cd">Separate cloud tools &amp; console from on&#8209;prem.</span></td>
+            <td><span class="st part"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M5 12h14"/></svg></span>Partial</span><span class="cd">Cloud add&#8209;ons, uneven parity with on&#8209;prem.</span></td>
+          </tr>
+          <tr>
+            <td class="crit">Built for whole&#8209;of&#8209;government rollout (Union ministry &rarr; state/region office)</td>
+            <td class="ftcol"><span class="st full"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M20 6 9 17l-5-5"/></svg></span>Designed for it</span><span class="cd">One platform scales every tier; local channel ready.</span></td>
+            <td><span class="st gap"><span class="ic"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Hard</span><span class="cd">Difficult to standardize across many agencies.</span></td>
+            <td><span class="st part"><span class="ic"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke-width="3.5"><path d="M5 12h14"/></svg></span>Costlier</span><span class="cd">Possible, but more expensive to scale.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cmp-note reveal">Comparison reflects architectural model and is intended for national program planning; specific capabilities vary by product configuration and licensing. Validation points: 2026 Gartner&reg; Magic Quadrant&trade; and Critical Capabilities reports (Hybrid Mesh Firewall; SASE Platforms; Cyber&#8209;Physical Systems Protection Platforms) and Gartner&reg; Peer Insights&trade;. Gartner does not endorse any vendor and Magic Quadrant placements differ by category.</p>
+  </div>
+</section>
+
+<!-- ============ 08. LAW & STANDARDS CROSSWALK ============ -->
+<section id="compliance" class="lead-tint">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow"><span class="sec-num">08</span> &nbsp;Law &amp; standards crosswalk</p>
+      <h2>Mapped to the law and the frameworks Myanmar&rsquo;s government already answers to</h2>
+      <p>The blueprint is not a new standard to learn &mdash; it is a way to satisfy the one already in force. Each control domain maps to the <a href="https://www.moi.gov.mm/moi:eng/news/16656" target="_blank" rel="noopener">Cybersecurity Law 2025</a> (SAC Law 1/2025, <a href="https://www.tilleke.com/insights/myanmar-cybersecurity-law-takes-effect/" target="_blank" rel="noopener">in force 30 Jul 2025</a>) and to three international frameworks and the regional cooperation structures Myanmar&rsquo;s ministries are increasingly measured against. This makes national rollout defensible and audit&#8209;ready.</p>
+    </div>
+
+    <div class="tablewrap reveal">
+      <table class="cross">
+        <thead>
+          <tr>
+            <th>Control domain</th>
+            <th>Cybersecurity Law 2025 <span>SAC Law 1/2025 &middot; in force 30 Jul 2025</span></th>
+            <th>NIST CSF <span>2.0</span></th>
+            <th>ISO/IEC <span>27001:2022</span></th>
+            <th>CISA ZTMM <span>v2</span></th>
+            <th>ASEAN / regional</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="dom-cell">D1 &mdash; Identity &amp; access<small>MFA, privileged access</small></td>
+            <td>s.17 duty &mdash; responsible official &amp; cybersecurity plan; access to prescribed standards</td>
+            <td><span class="id">PR.AA</span></td>
+            <td><span class="id">A.5.15, A.5.17, A.8.2, A.8.5</span></td>
+            <td><span class="id">Identity pillar</span></td>
+            <td>ASEAN CCS 2026&ndash;2030 &mdash; CII identification baseline</td>
+          </tr>
+          <tr>
+            <td class="dom-cell">D2 &mdash; Email &amp; human layer<small>anti&#8209;phishing, awareness</small></td>
+            <td>s.17 duty &mdash; cybersecurity plan &amp; staff awareness; service&#8209;provider duty &mdash; monitoring</td>
+            <td><span class="id">PR.AT, DE.CM</span></td>
+            <td><span class="id">A.6.3, A.8.7, A.5.14</span></td>
+            <td><span class="id">Applications &amp; Workloads (email)</span></td>
+            <td>APCERT drills (mmCERT member) &mdash; phishing&#8209;simulation exchange</td>
+          </tr>
+          <tr>
+            <td class="dom-cell">D3 &mdash; Endpoint &amp; ransomware<small>behavioral protection</small></td>
+            <td>s.17 duty &mdash; data to prescribed standards; incident prevention</td>
+            <td><span class="id">PR.PS, DE.CM, RS.MI</span></td>
+            <td><span class="id">A.8.7, A.8.16</span></td>
+            <td><span class="id">Devices pillar</span></td>
+            <td>ASEAN Regional CERT &mdash; malware&#8209;sample sharing</td>
+          </tr>
+          <tr>
+            <td class="dom-cell">D4 &mdash; Segmentation &amp; ZTNA<small>contain blast radius</small></td>
+            <td>Ch. VII CII categories (a)&ndash;(h) &mdash; e&#8209;Government, e&#8209;finance, e&#8209;health, e&#8209;transport, e&#8209;communications</td>
+            <td><span class="id">PR.IR, PR.AA</span></td>
+            <td><span class="id">A.8.20, A.8.22, A.8.23</span></td>
+            <td><span class="id">Networks pillar</span></td>
+            <td>ASEAN CCS 2026&ndash;2030 &mdash; CII identification</td>
+          </tr>
+          <tr>
+            <td class="dom-cell">D5 &mdash; Detection &amp; response<small>SOC, SIEM, IR</small></td>
+            <td>s.17 duty &mdash; incident/emergency response team; service&#8209;provider duty &mdash; immediate anomaly reporting</td>
+            <td><span class="id">DE.*, RS.*</span></td>
+            <td><span class="id">A.8.15, A.8.16, A.5.24&ndash;5.28</span></td>
+            <td><span class="id">Visibility &amp; Analytics</span></td>
+            <td>ASEAN Regional CERT (operational Jan 2026); APCERT drills</td>
+          </tr>
+          <tr>
+            <td class="dom-cell">D6 &mdash; Data, backup &amp; recovery<small>DLP, immutable restore</small></td>
+            <td>s.17 duty &mdash; data to prescribed standards; annual CII report to Steering Committee</td>
+            <td><span class="id">PR.DS, RC.*</span></td>
+            <td><span class="id">A.8.10&ndash;8.13</span></td>
+            <td><span class="id">Data pillar</span></td>
+            <td>ASEAN CCS 2026&ndash;2030 &mdash; incident&#8209;response governance framework</td>
+          </tr>
+          <tr>
+            <td class="dom-cell">D7 &mdash; Sovereign cloud<small>Government Data Centre &amp; Cloud</small></td>
+            <td>Ch. VII CII categories (a)&ndash;(h); service&#8209;provider duty &mdash; monitoring &amp; international standards</td>
+            <td><span class="id">GV.SC, ID.AM, PR.IR</span></td>
+            <td><span class="id">A.5.23, A.8.20&ndash;8.23</span></td>
+            <td><span class="id">Automation &amp; Orchestration; Governance</span></td>
+            <td>ASEAN Regional CERT; ASEAN CCS 2026&ndash;2030 CII identification</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend reveal">
+      <span><b>CSL 2025</b> Cybersecurity Law 2025, SAC Law 1/2025</span>
+      <span><b>NIST CSF 2.0</b> functions</span>
+      <span><b>ISO 27001:2022</b> Annex&nbsp;A</span>
+      <span><b>CISA ZTMM v2</b> pillars &amp; cross&#8209;cutting capabilities</span>
+      <span><b>ASEAN / regional</b> Cybersecurity Cooperation Strategy 2026&ndash;2030, ASEAN Regional CERT, APCERT</span>
+      <span>CSL 2025 implementing rules &amp; CII designation register not yet published (as of Aug 2026) &mdash; mappings advisory.</span>
+    </div>
+
+    <div class="gapnote reveal">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b9860a" stroke-width="2.2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+      <p><b>Execution gap (NCSI, Mar 2026):</b> CII protection 50% &middot; incident response 57% &middot; no mandatory security requirements for CII or public&#8209;sector bodies &middot; no cyber crisis&#8209;management plan &mdash; the exact delta this blueprint closes. <a href="https://ncsi.ega.ee/country/mm/" target="_blank" rel="noopener">Source &middot; ncsi.ega.ee/country/mm</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09. GOVERNMENT-LED ROLLOUT ============ -->
+<section id="rollout" class="lead-tint">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow"><span class="sec-num">09</span> &nbsp;A Government&#8209;led rollout</p>
+      <h2>From one incident to a national baseline</h2>
+      <p>The Ministry of Digital Development and Communications and the e&#8209;Government Steering Committee are uniquely placed to convert this pattern into a national baseline: issue a minimum&#8209;controls directive, supervise attestation under the Cybersecurity Law 2025, and stand up shared threat intelligence through mmCERT/NCSC. A phased, tiered model keeps it achievable for every ministry and agency &mdash; from Union ministries operating CII to small state/region offices.</p>
+    </div>
+
+    <div class="road">
+      <div class="ph p1 reveal">
+        <div class="ph-h"><div class="when">Phase 1 &middot; 0&ndash;90 days</div><h4>Stop the pattern</h4></div>
+        <div class="ph-b">
+          <p class="goal">Close the identity gap that every recent incident began with.</p>
+          <ul>
+            <li>MFA on all staff/admin &amp; remote access</li>
+            <li>PAM for data&#8209;centre and ministry admin</li>
+            <li>Email security on every mailbox</li>
+            <li>FortiEndpoint on all endpoints</li>
+            <li>Dark&#8209;web / credential monitoring live</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ph p2 reveal">
+        <div class="ph-h"><div class="when">Phase 2 &middot; 3&ndash;9 months</div><h4>Contain &amp; see</h4></div>
+        <div class="ph-b">
+          <p class="goal">Limit blast radius and gain full visibility.</p>
+          <ul>
+            <li>Segmentation around citizen&#8209;data systems &amp; Gov Cloud tenants</li>
+            <li>ZTNA replaces flat VPN</li>
+            <li>Central logging &amp; SIEM</li>
+            <li>Tested IR playbooks</li>
+            <li>Incident reporting to mmCERT</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ph p3 reveal">
+        <div class="ph-h"><div class="when">Phase 3 &middot; 9&ndash;18 months</div><h4>National resilience</h4></div>
+        <div class="ph-b">
+          <p class="goal">Move from per&#8209;ministry defense to a national resilience posture.</p>
+          <ul>
+            <li>Government SOC / co&#8209;managed SOC with NCSC</li>
+            <li>Deception at Tier&#8209;1</li>
+            <li>Assured immutable backup &amp; restore drills</li>
+            <li>Annual CII attestation</li>
+            <li>National cyber&#8209;maturity dashboard for the Steering Committee</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="diag reveal">
+<!-- DIAG:TIERS -->
+      <svg viewBox="0 0 1120 300" width="100%" height="auto" role="img" aria-label="Tiered national rollout: Tier 1 Union ministries operating CII and the Government Data Centre with full Fabric, 24x7 SOC, deception and threat hunting; Tier 2 line ministries and departments with core Fabric and co-managed SOC; Tier 3 state and region offices and small agencies with Sovereign SASE-delivered baseline as a managed service; timeline below shows Phase 1, 0 to 90 days, Phase 2, 3 to 9 months, and Phase 3, 9 to 18 months." xmlns="http://www.w3.org/2000/svg" font-family="Inter, Arial, sans-serif">
+
+  <defs>
+    <marker id="arrEnd" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2c8e64"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1120" height="300" fill="#ffffff"/>
+
+  <!-- ===================== TIER 1 ===================== -->
+  <rect x="20" y="20" width="180" height="55" rx="10" fill="#da291c"/>
+  <text x="110" y="40" text-anchor="middle" font-size="11" font-weight="900" letter-spacing="0.6" fill="#ffffff">TIER 1</text>
+  <text x="110" y="58" text-anchor="middle" font-size="12.5" font-weight="800" fill="#ffffff">Union ministries</text>
+  <text x="220" y="52" font-size="12.5" font-weight="500" fill="#11151c">Operating CII &amp; the Government Data Centre — full Fabric, 24×7 SOC, deception, threat hunting</text>
+
+  <!-- ===================== TIER 2 ===================== -->
+  <rect x="20" y="85" width="260" height="55" rx="10" fill="#0a192d"/>
+  <text x="150" y="105" text-anchor="middle" font-size="11" font-weight="900" letter-spacing="0.6" fill="#ffffff">TIER 2</text>
+  <text x="150" y="123" text-anchor="middle" font-size="12.5" font-weight="800" fill="#ffffff">Line ministries &amp; departments</text>
+  <text x="300" y="117" font-size="12.5" font-weight="500" fill="#11151c">Core Fabric + co‑managed SOC</text>
+
+  <!-- ===================== TIER 3 ===================== -->
+  <rect x="20" y="150" width="340" height="55" rx="10" fill="#2c8e64"/>
+  <text x="190" y="170" text-anchor="middle" font-size="11" font-weight="900" letter-spacing="0.6" fill="#ffffff">TIER 3</text>
+  <text x="190" y="188" text-anchor="middle" font-size="12.5" font-weight="800" fill="#ffffff">State/region offices &amp; small agencies</text>
+  <text x="380" y="182" font-size="12.5" font-weight="500" fill="#11151c">Sovereign SASE‑delivered baseline as a managed service</text>
+
+  <!-- ===================== TIMELINE ===================== -->
+  <line x1="40" y1="245" x2="373" y2="245" stroke="#da291c" stroke-width="5" stroke-linecap="round"/>
+  <line x1="373" y1="245" x2="706" y2="245" stroke="#0a192d" stroke-width="5" stroke-linecap="round"/>
+  <line x1="706" y1="245" x2="1075" y2="245" stroke="#2c8e64" stroke-width="5" stroke-linecap="round" marker-end="url(#arrEnd)"/>
+
+  <circle cx="40" cy="245" r="5" fill="#da291c"/>
+  <circle cx="373" cy="245" r="5" fill="#0a192d"/>
+  <circle cx="706" cy="245" r="5" fill="#2c8e64"/>
+
+  <text x="206" y="232" text-anchor="middle" font-size="12.5" font-weight="800" fill="#da291c">Phase 1</text>
+  <text x="206" y="266" text-anchor="middle" font-size="11" font-weight="500" fill="#6a6f78">0–90 days</text>
+
+  <text x="539" y="232" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0a192d">Phase 2</text>
+  <text x="539" y="266" text-anchor="middle" font-size="11" font-weight="500" fill="#6a6f78">3–9 months</text>
+
+  <text x="893" y="232" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2c8e64">Phase 3</text>
+  <text x="893" y="266" text-anchor="middle" font-size="11" font-weight="500" fill="#6a6f78">9–18 months</text>
+
+</svg>
+    </div>
+
+    <div class="tiering reveal">
+      <div class="tier"><h5>Tier 1 &mdash; Union ministries &amp; the Government Data Centre</h5><p>Union ministries operating CII and the Government Data Centre. Full Security Fabric, 24&times;7 SOC, deception and threat&#8209;hunting; anchor nodes for national threat sharing.</p></div>
+      <div class="tier"><h5>Tier 2 &mdash; Line ministries &amp; departments</h5><p>Core Fabric &mdash; identity, email, endpoint, segmentation, SIEM &mdash; with a co&#8209;managed SOC to offset lean teams.</p></div>
+      <div class="tier"><h5>Tier 3 &mdash; State/region offices &amp; small agencies</h5><p>Sovereign SASE&#8209;delivered baseline as a managed service &mdash; low&#8209;footprint identity, endpoint and segmentation.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. WHY FORTINET ============ -->
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow"><span class="sec-num">10</span> &nbsp;Why Fortinet for this mandate</p>
+      <h2>One Fabric, the full kill chain, built for lean teams</h2>
+      <p>A national program needs breadth, integration and operability &mdash; not fifteen vendors for thirty ministries. Fortinet delivers the entire blueprint on a single platform, which is exactly what makes it deployable across institutions of very different sizes and technical maturity.</p>
+    </div>
+
+    <div class="why">
+      <div class="w reveal">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.5 8 8 11 4.5-3 8-6 8-11V5l-8-3Z"/></svg></div>
+        <h4>Full kill&#8209;chain coverage</h4>
+        <p>Identity, email, endpoint, network, SOC and data &mdash; every stage of the pattern seen in Myanmar and abroad has a Fortinet control. No seams for attackers to slip through.</p>
+      </div>
+      <div class="w reveal">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></div>
+        <h4>One platform, one console</h4>
+        <p>FortiOS 8.0 unifies the Fabric on a common operating system and management plane &mdash; lower complexity and TCO, vital for Tier&#8209;2/3 ministries and agencies with small security teams.</p>
+      </div>
+      <div class="w reveal">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="5" y="10" width="14" height="9" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+        <h4>Sovereign by design</h4>
+        <p>FortiSASE Sovereign / Outpost keep inspection, logs and processing in&#8209;country; on&#8209;prem FortiSIEM/FortiSOAR support an air&#8209;gapped SOC where required.</p>
+      </div>
+      <div class="w reveal">
+        <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+        <h4>AI &amp; global threat intel</h4>
+        <p>FortiGuard Labs and FortiAI deliver real&#8209;time, shared intelligence &mdash; the technical basis for national threat sharing coordinated through mmCERT/NCSC.</p>
+      </div>
+    </div>
+
+    <div class="localnote reveal">
+      <b>Delivery is local.</b> Fortinet is already deployed across Myanmar&rsquo;s enterprises and critical sectors and is supported by established in&#8209;country distribution and channel partners (e.g. VSTECS), plus free Fortinet Training Institute / NSE curricula for government staff &mdash; so a Government&#8209;led rollout can be resourced and sustained nationally.
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" style="border-bottom:0">
+  <div class="wrap">
+    <p class="eyebrow lite" style="color:#ffd2cc">Proposed next steps</p>
+    <h2>Turn one incident into the nation&rsquo;s turning point.</h2>
+    <p>Fortinet proposes a short, structured engagement with the Ministry of Digital Development and Communications, the e&#8209;Government Steering Committee and CII ministries to move from this blueprint to a funded, government&#8209;led program.</p>
+    <div class="steps">
+      <div class="s"><div class="n">01</div><h4>Government briefing</h4><p>Executive walkthrough with MDDC, the e&#8209;Gov Steering Committee and CII ministries.</p></div>
+      <div class="s"><div class="n">02</div><h4>Reference architecture</h4><p>Joint workshop: minimum&#8209;controls directive, tiered model, Gov Cloud tenant baseline.</p></div>
+      <div class="s"><div class="n">03</div><h4>Lighthouse pilot</h4><p>90&#8209;day Phase&nbsp;1 deployment at one Union ministry + a Government Data Centre tenant.</p></div>
+      <div class="s"><div class="n">04</div><h4>National rollout</h4><p>Phased program with annual CII attestation &amp; a Steering Committee maturity dashboard.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="pos">Fortify Your Cybersecurity<span class="x">.</span></div>
+        <div class="tag">Securing people, devices and data everywhere &mdash; for Myanmar&rsquo;s government and e&#8209;Government services.</div>
+      </div>
+      <div class="foot-meta">
+        <b>Fortinet &middot; Myanmar</b><br>
+        Myanmar Government &amp; e&#8209;Government Ransomware Resilience Blueprint<br>
+        Prepared for the Ministry of Digital Development and Communications, e&#8209;Government Steering Committee and Union Ministries<br>
+        Version 2.0 &middot; August 2026 &middot; Confidential
+      </div>
+    </div>
+    <p class="disc"><b style="color:#cdd6e2">Disclaimer.</b> This document is prepared for national resilience planning. References to domestic incidents are based on open&#8209;source reporting and public threat&#8209;actor claims circulating as of August 2026 and have not been independently confirmed by the affected institutions or Government. International cases are cited from official statements, national CERT advisories and reputable press. MITRE ATT&amp;CK technique IDs are indicative of observed intrusion patterns. Cybersecurity Law 2025 implementing rules and the CII designation register have not yet been published as of August 2026 &mdash; control&#8209;to&#8209;framework mappings in this document are advisory and should be validated against each ministry&rsquo;s formal scope and the current published versions of each standard. Gartner&reg; and Magic Quadrant&trade; are registered trademarks of Gartner, Inc. and/or its affiliates; Gartner does not endorse any vendor, product or service depicted in its research publications, and research publications consist of the opinions of Gartner&rsquo;s research organization and should not be construed as statements of fact; Gartner disclaims all warranties, expressed or implied, with respect to this research. Product names are trademarks of Fortinet, Inc.</p>
+    <p class="sources"><b style="color:#9fb0c6">Reference standards &amp; sources:</b> <a href="https://www.moi.gov.mm/moi:eng/news/16656" target="_blank" rel="noopener">Cybersecurity Law 2025</a> (SAC Law 1/2025; Ministry of Information text) &middot; <a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener">NIST Cybersecurity Framework 2.0</a> &middot; ISO/IEC 27001:2022 &middot; <a href="https://www.cisa.gov/zero-trust-maturity-model" target="_blank" rel="noopener">CISA Zero Trust Maturity Model v2</a> &middot; <a href="https://asean.org/wp-content/uploads/2026/07/ASEAN-Cybersecurity-Cooperation-Strategy_08072026_FIN.pdf" target="_blank" rel="noopener">ASEAN Cybersecurity Cooperation Strategy 2026&ndash;2030</a> &middot; <a href="https://www.fortinet.com/corporate/about-us/newsroom/press-releases/2026/fortinet-2026-global-threat-landscape-report-reveals-surge-in-ai-enabled-cybercrime-increase-ransomware-victims-year-over-year" target="_blank" rel="noopener">Fortinet 2026 Global Threat Landscape Report</a> &middot; <a href="https://www.comparitech.com/news/government-ransomware-roundup-h1-2026-stats-on-attacks-ransoms-and-data-breaches/" target="_blank" rel="noopener">Comparitech Government Ransomware Roundup H1 2026</a> &amp; <a href="https://www.comparitech.com/blog/information-security/government-ransomware-attacks/" target="_blank" rel="noopener">government ransomware tracker</a> &middot; <a href="https://www.sophos.com/en-us/content/state-of-ransomware" target="_blank" rel="noopener">Sophos State of Ransomware 2025</a> &amp; <a href="https://www.sophos.com/en-us/whitepaper/state-of-ransomware-in-state-and-local-government" target="_blank" rel="noopener">State of Ransomware in State &amp; Local Government 2024</a> &middot; <a href="https://ncsi.ega.ee/country/mm/" target="_blank" rel="noopener">National Cyber Security Index &mdash; Myanmar</a> &middot; mmCERT &amp; APCERT membership records &middot; international case sources: The Register, TechRadar, CISA AA21&#8209;265A, BleepingComputer, The Record, HIPAA Journal, Comparitech, DFDL, Dark Reading &middot; Myanmar incident sources: BNI Online, HackerNoon, The Hacker News &middot; Fortinet customer references and press materials (fortinet.com), including FortiSASE Sovereign, FortiEndpoint, FortiOS 8.0 and Gartner&reg; Peer Insights&trade; announcements.</p>
+  </div>
+</footer>
+
+<script>
+  // active-nav + scroll reveal (vanilla, self-contained)
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('.tabs a'));
+    var map = {};
+    links.forEach(function(a){ var id=a.getAttribute('href').slice(1); var el=document.getElementById(id); if(el) map[id]=a; });
+    var secs = Object.keys(map).map(function(id){return document.getElementById(id);});
+
+    var navObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){a.classList.remove('active');});
+          var a = map[e.target.id]; if(a) a.classList.add('active');
+        }
+      });
+    }, {rootMargin:'-45% 0px -50% 0px', threshold:0});
+    secs.forEach(function(s){navObs.observe(s);});
+
+    var revObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); revObs.unobserve(e.target);} });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:.08});
+    document.querySelectorAll('.reveal').forEach(function(el){revObs.observe(el);});
+  })();
+</script>
+</body>
+</html>
