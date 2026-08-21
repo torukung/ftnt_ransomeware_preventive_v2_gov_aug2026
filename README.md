@@ -5,7 +5,7 @@ Government edition of the June 2026 sector-resilience blueprint, re-aimed at the
 > Open [`index.html`](index.html) in a browser. **Save as PDF** (top-right) exports through Chrome print CSS. Pre-rendered copy: `ftnt_ransomeware_preventive_v2_gov_aug2026.pdf`. Re-render with `./render-pdf.sh` (headless Chrome only — never WeasyPrint).
 
 ## What changed from v1 (June 2026, banking)
-- All affected institutions are anonymised (non-disclosure); catalyst is the Myanmar public-sector threat snapshot described by incident type only (2025 HR-data incidents, Jun 2026 extortion, state-nexus espionage).
+- No domestic institutions or incidents are named; the hero threat-snapshot card was removed in v2.0.3 (non-disclosure). Catalyst is framed as rising public-sector ransomware 2025–2026.
 - New **05 Lessons from abroad**: Indonesia PDN, Costa Rica, PhilHealth, Malaysia KLIA, Thailand MoL (claimed vs. stated), Vietnam governance response.
 - SWIFT CSP / PCI DSS crosswalk → **Cybersecurity Law 2025 s.17 duties · NIST CSF 2.0 · ISO 27001:2022 · CISA ZTMM v2 · ASEAN CCS 2026–2030 / ASEAN Regional CERT**, plus NCSI execution-gap callout.
 - AWS band → **Sovereign cloud** (Government Data Centre / Government Cloud, FortiSASE Sovereign / Outpost, on-prem SIEM/SOAR) with architecture diagram.
