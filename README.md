@@ -1,11 +1,11 @@
 # Fortinet — Myanmar Government & e-Government Ransomware Resilience Blueprint (v2.0 · Aug 2026)
 
-Government edition of the June 2026 sector-resilience blueprint, re-aimed at the **Ministry of Digital Development and Communications (formerly MoTC)**, the e-Government Steering Committee and Union ministries. Anchored in the **Cybersecurity Law 2025** (SAC Law 1/2025, in force 30 Jul 2025) CII duties; no bank-specific framing.
+Government edition of the June 2026 sector-resilience blueprint, re-aimed at the **lead digital-government ministry**, the e-Government Steering Committee and Union ministries. Anchored in the **Cybersecurity Law 2025** (SAC Law 1/2025, in force 30 Jul 2025) CII duties; no bank-specific framing.
 
 > Open [`index.html`](index.html) in a browser. **Save as PDF** (top-right) exports through Chrome print CSS. Pre-rendered copy: `ftnt_ransomeware_preventive_v2_gov_aug2026.pdf`. Re-render with `./render-pdf.sh` (headless Chrome only — never WeasyPrint).
 
 ## What changed from v1 (June 2026, banking)
-- Victim institution anonymised; catalyst is the Myanmar public-sector threat snapshot (Jul–Aug 2025 civil-service incidents, Jun 2026 extortion, state-nexus espionage).
+- All affected institutions are anonymised (non-disclosure); catalyst is the Myanmar public-sector threat snapshot described by incident type only (2025 HR-data incidents, Jun 2026 extortion, state-nexus espionage).
 - New **05 Lessons from abroad**: Indonesia PDN, Costa Rica, PhilHealth, Malaysia KLIA, Thailand MoL (claimed vs. stated), Vietnam governance response.
 - SWIFT CSP / PCI DSS crosswalk → **Cybersecurity Law 2025 s.17 duties · NIST CSF 2.0 · ISO 27001:2022 · CISA ZTMM v2 · ASEAN CCS 2026–2030 / ASEAN Regional CERT**, plus NCSI execution-gap callout.
 - AWS band → **Sovereign cloud** (Government Data Centre / Government Cloud, FortiSASE Sovereign / Outpost, on-prem SIEM/SOAR) with architecture diagram.
